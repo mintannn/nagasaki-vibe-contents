@@ -97,6 +97,20 @@ export default function TopPage() {
         </div>
       </section>
 
+      {/* ===== PARTICIPANTS ===== */}
+      <section className="top-participants">
+        <div className="top-participants-inner">
+          <div className="top-days-label">MEMBERS</div>
+          <div className="top-days-title">Participants</div>
+          <p className="top-participants-desc">
+            チェックイン済みの参加者と事前宿題を確認できます
+          </p>
+          <Link href="/participants" className="top-participants-btn">
+            参加者一覧を見る →
+          </Link>
+        </div>
+      </section>
+
       {/* ===== FOOTER ===== */}
       <footer className="top-footer">
         <div className="top-footer-fish">
