@@ -1,4 +1,3 @@
-import { CheckinForm } from '@/components/checkin-form'
 import { DayNav } from '@/components/day-nav'
 import { FadeSection } from '@/components/fade-section'
 
@@ -27,7 +26,19 @@ export default function Day1Page() {
           <div className="camp-action-desc">
             下のフォームに入力して、チェックインを完了してください。
           </div>
-          <CheckinForm />
+          <div className="camp-checkin-embed">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSde7-FCsZabGK3yTT0812OlFJZq6kLFHk0lbxx552WNlJw0tQ/viewform?embedded=true"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              marginHeight={0}
+              marginWidth={0}
+              style={{ borderRadius: '12px', background: 'rgba(255,255,255,0.95)' }}
+            >
+              読み込んでいます…
+            </iframe>
+          </div>
         </div>
 
         <div className="camp-action">
