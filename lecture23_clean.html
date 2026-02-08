@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レク2・3 — 価値設計とVibeコーディング</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0C0E1A; --card: #141828; --gold: #C8A44E; --gold-dim: #8B7338;
+    --cream: #F0EBE0; --coral: #D4553E; --teal: #2D9B8E;
+    --text: #C8C4BC; --text-dim: #706C64; --border: rgba(200,164,78,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .slide { max-width: 1200px; margin: 0 auto; padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); }
+  .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 12px; }
+  .title { font-size: 42px; font-weight: 900; color: var(--cream); line-height: 1.2; margin-bottom: 8px; }
+  .subtitle { font-size: 16px; color: var(--text-dim); margin-bottom: 40px; line-height: 1.6; }
+  .subtitle em { font-style: normal; color: var(--gold); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .card { padding: 32px; background: var(--card); border-top: 3px solid var(--border); }
+  .card.gold { border-color: var(--gold); } .card.coral { border-color: var(--coral); } .card.teal { border-color: var(--teal); }
+  .card-label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .card-title { font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 12px; line-height: 1.3; }
+  .card-body { font-size: 14px; line-height: 1.9; }
+  .card-body em { font-style: normal; color: var(--gold); }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; margin-bottom: 28px; }
+  .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; padding-top: 2px; }
+  .step-title { font-size: 16px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--text); line-height: 1.8; }
+  .callout { margin-top: 40px; padding: 28px 32px; border: 1px solid var(--gold); background: rgba(200,164,78,0.03); display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; }
+  .callout-icon { font-size: 28px; }
+  .callout-text { font-size: 15px; line-height: 1.7; }
+  .callout-text strong { color: var(--gold); font-weight: 700; }
+  .quote-box { padding: 28px 32px; border-left: 4px solid var(--gold); background: var(--card); margin-bottom: 20px; }
+  .quote-text { font-size: 15px; font-style: italic; color: var(--cream); line-height: 1.8; margin-bottom: 8px; }
+  .quote-author { font-size: 12px; color: var(--gold-dim); }
+  .arrow-down { text-align: center; color: var(--gold-dim); font-size: 20px; padding: 8px 0; }
+  .progress-bar { display: flex; gap: 4px; margin-top: 40px; }
+  .progress-seg { flex: 1; height: 4px; background: var(--border); }
+  .progress-seg.done { background: var(--gold); } .progress-seg.current { background: var(--coral); }
+  .prompt-box { margin-top: 16px; padding: 20px 24px; background: var(--bg); border-left: 3px solid var(--teal); font-size: 13px; line-height: 1.9; color: var(--cream); }
+  .prompt-label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 2px; color: var(--teal); margin-bottom: 8px; }
+  .tool-link { color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--teal); }
+  .footer { padding: 40px 80px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--gold-dim); }
+  .footer-right { font-size: 11px; color: var(--text-dim); }
+  .img-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 12px; margin-bottom: 16px; overflow: hidden; }
+  .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+  .col-insight { margin-top: 40px; padding: 32px; background: linear-gradient(135deg, rgba(200,164,78,0.06), rgba(45,155,142,0.06)); border: 1px solid var(--border); }
+  .col-insight-title { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ===== SLIDE 1: WHY VALUE DESIGN ===== -->
+<div class="slide">
+  <div class="tag">DAY 2 — LECTURE 2 & 3 — 13:00</div>
+  <div class="title">作る前に、設計する。</div>
+  <div class="subtitle">いいプロダクトは、いい技術ではなく<em>いい価値設計</em>から生まれる。</div>
+
+  <div>
+    <div class="quote-box">
+      <div class="quote-text">"顧客が本当に欲しいものを学ばなければならない。顧客が言うことでも、我々が欲しいと思うものでもなく。"</div>
+      <div class="quote-author">— Eric Ries『The Lean Startup』著者</div>
+    </div>
+    <div class="quote-box">
+      <div class="quote-text">"事実はビルの中にはない。外に出ろ。"</div>
+      <div class="quote-author">— Steve Blank, Customer Development提唱者</div>
+    </div>
+    <div class="quote-box">
+      <div class="quote-text">"劣ったプロダクトでも、優れた価値提案とビジネスモデルがあれば勝てる。"</div>
+      <div class="quote-author">— Alexander Osterwalder, Value Proposition Canvas考案者</div>
+    </div>
+
+    <div class="card coral" style="margin-top: 32px;">
+      <div class="card-label">KEY MESSAGE</div>
+      <div class="card-title">作れることは午前に体験しました。<br>午後は「何を作るべきか」を考えます。</div>
+      <div class="card-body">
+        Vibeコーディングで素早くプロダクトが作れる時代です。<br>
+        だからこそ、<em>誰のために、何を解決するのか</em>を先に設計することが決定的に重要になります。<br><br>
+        これはスタートアップの世界で確立された方法論です。<br>
+        Lean Startup、Customer Development、Value Proposition Design ――<br>
+        世界中の起業家やCoca-Cola、MasterCard、LEGOなどの大企業でも使われています。
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 24px;">
+      <div class="callout-icon">📚</div>
+      <div class="callout-text">
+        <strong>今日使うフレームワークの出典</strong><br>
+        Value Proposition Canvas — Alexander Osterwalder &amp; Yves Pigneur（Thinkers50 世界トップ5）<br>
+        Lean Startup — Eric Ries / Steve Blank（Harvard Business School採用）<br>
+        Customer Development — Steve Blank（Stanford大学で教鞭）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 2: 3 FRAMEWORKS ===== -->
+<div class="slide">
+  <div class="tag">FRAMEWORKS</div>
+  <div class="title">3つのフレームワーク</div>
+  <div class="subtitle">軽量だけど本質をつく。今回のワークショップで使う3つのツールを紹介します。</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+    <div class="card teal">
+      <div class="card-label">STEP 1</div>
+      <div class="card-title">ターゲットペルソナ</div>
+      <div class="card-body">
+        <em>誰のためのプロダクトか？</em><br>
+        ターゲットとなる人物像を具体的に定めます。
+      </div>
+      <div class="img-placeholder" style="margin-top: 16px;">
+        <img src="data:image/placeholder

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0C0E1A;
+  --foreground: #C8C4BC;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
