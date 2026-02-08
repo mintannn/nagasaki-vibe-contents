@@ -1,36 +1,53 @@
 'use client'
 
-import { useState } from 'react'
-import { submitCheckin } from '@/app/actions/checkin-actions'
+import { useState, useEffect } from 'react'
+
+interface CheckinData {
+  name: string
+  lpUrl?: string
+  comment?: string
+  checkedInAt: string
+}
+
+const STORAGE_KEY = 'camp-checkin'
 
 export function CheckinForm() {
   const [name, setName] = useState('')
   const [lpUrl, setLpUrl] = useState('')
   const [comment, setComment] = useState('')
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'success'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [savedName, setSavedName] = useState('')
 
-  async function handleSubmit() {
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        const data: CheckinData = JSON.parse(saved)
+        setSavedName(data.name)
+        setStatus('success')
+      } catch {
+        // ignore
+      }
+    }
+  }, [])
+
+  function handleSubmit() {
     if (!name.trim()) {
       setErrorMsg('お名前を入力してください')
-      setStatus('error')
       return
     }
-    setStatus('submitting')
     setErrorMsg('')
 
-    const result = await submitCheckin({
-      name,
-      lpUrl: lpUrl || undefined,
-      comment: comment || undefined,
-    })
-
-    if (result.success) {
-      setStatus('success')
-    } else {
-      setErrorMsg(result.error || 'エラーが発生しました')
-      setStatus('error')
+    const data: CheckinData = {
+      name: name.trim(),
+      lpUrl: lpUrl.trim() || undefined,
+      comment: comment.trim() || undefined,
+      checkedInAt: new Date().toISOString(),
     }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    setSavedName(data.name)
+    setStatus('success')
   }
 
   if (status === 'success') {
@@ -42,7 +59,7 @@ export function CheckinForm() {
             チェックイン完了
           </div>
           <div style={{ fontSize: '13px', color: '#C8C4BC' }}>
-            ようこそ、{name}さん！
+            ようこそ、{savedName}さん！
           </div>
         </div>
       </div>
@@ -58,7 +75,6 @@ export function CheckinForm() {
         placeholder="表示名を入力"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        disabled={status === 'submitting'}
       />
 
       <label className="camp-form-label">自己紹介LPのURL</label>
@@ -68,7 +84,6 @@ export function CheckinForm() {
         placeholder="https://v0.dev/..."
         value={lpUrl}
         onChange={(e) => setLpUrl(e.target.value)}
-        disabled={status === 'submitting'}
       />
 
       <label className="camp-form-label">ひとこと（任意）</label>
@@ -78,10 +93,9 @@ export function CheckinForm() {
         placeholder="意気込みなど"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        disabled={status === 'submitting'}
       />
 
-      {status === 'error' && errorMsg && (
+      {errorMsg && (
         <div style={{ color: '#D4553E', fontSize: '12px', marginTop: '10px' }}>
           {errorMsg}
         </div>
@@ -90,10 +104,8 @@ export function CheckinForm() {
       <button
         className="camp-form-btn"
         onClick={handleSubmit}
-        disabled={status === 'submitting'}
-        style={{ opacity: status === 'submitting' ? 0.6 : 1 }}
       >
-        {status === 'submitting' ? '送信中...' : 'チェックイン'}
+        チェックイン
       </button>
     </div>
   )
