@@ -321,6 +321,40 @@
 .day-3 .top-day-wave { color: var(--camp-teal); }
 .top-day-wave svg { width: 100%; height: 100%; }
 
+/* ---- Top Participants Link ---- */
+.top-participants {
+  padding: 60px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--camp-border);
+}
+
+.top-participants-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.top-participants-desc {
+  font-size: 13px;
+  color: var(--camp-text-dim);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.top-participants-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 14px 36px;
+  background: var(--camp-gold);
+  color: var(--camp-bg);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: opacity 0.2s;
+}
+
+.top-participants-btn:hover { opacity: 0.85; }
+
 /* ---- Top Footer ---- */
 .top-footer {
   padding: 48px 24px;
@@ -1689,433 +1723,230 @@
 }
 
 /* =============================================
-   NEW COMPONENTS — Copy, Accordion, YouTube, Checkbox, Completion
+   PARTICIPANTS PAGE
    ============================================= */
 
-/* Copy Button */
-.copy-button {
-  display: inline-flex;
+.participants-header {
+  min-height: 40dvh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 10px 16px;
-  background: var(--camp-ocean-light);
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 60px 24px 40px;
+  border-bottom: 1px solid var(--camp-border);
+}
+
+.participants-back {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 13px;
+  color: var(--camp-gold-dim);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.participants-back:hover { color: var(--camp-gold); }
+
+.participants-header-content { max-width: 600px; }
+
+.participants-label {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--camp-text-dim);
+  margin-bottom: 12px;
+}
+
+.participants-title {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
   color: var(--camp-cream);
-  border: 1px solid var(--camp-ocean);
+  letter-spacing: 4px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.participants-subtitle {
   font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 6px;
+  color: var(--camp-text-dim);
   margin-top: 12px;
 }
-.copy-button:hover {
-  background: var(--camp-ocean);
-  color: white;
-}
-.copy-button.copied {
-  background: var(--camp-teal);
-  border-color: var(--camp-teal);
-  color: white;
-}
-.copy-button-text {
-  font-size: 13px;
-}
 
-/* Slide prompt box with copy button */
-.slide-prompt-wrapper {
-  position: relative;
-}
-.slide-prompt-wrapper .copy-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 8px 12px;
-  font-size: 12px;
-  margin-top: 0;
-}
-
-/* Accordion */
-.accordion {
-  background: #FFFFFF;
-  border: none;
-  border-radius: 16px;
-  margin-bottom: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-.accordion-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 20px 24px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  transition: all 0.2s ease;
-  min-height: 64px;
-}
-.accordion-header:hover {
-  background: #F8FBFC;
-}
-.accordion-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--camp-cream);
-}
-.accordion-icon {
-  font-size: 14px;
-  color: var(--camp-ocean);
-  transition: transform 0.3s;
-}
-.accordion-open .accordion-icon {
-  transform: rotate(180deg);
-}
-.accordion-content {
-  padding: 0 28px 28px;
-  animation: accordion-slide-down 0.3s ease;
-}
-@keyframes accordion-slide-down {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* YouTube Embed */
-.youtube-embed {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--camp-card);
-  margin: 20px 0;
-}
-.youtube-embed iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 12px;
-}
-
-/* Task Checkbox */
-.task-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-  background: #FFFFFF;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: 10px;
-  position: relative;
-  min-height: 56px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-.task-checkbox:hover {
-  background: #F8FBFC;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-.task-checkbox-checked {
-  background: linear-gradient(135deg, #E8F8F6 0%, #DFF5F2 100%);
-}
-.task-checkbox-input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.task-checkbox-box {
-  width: 26px;
-  height: 26px;
-  border: 2px solid #D1D5DB;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  color: var(--camp-teal);
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  background: white;
-}
-.task-checkbox-checked .task-checkbox-box {
-  background: var(--camp-teal);
-  border-color: var(--camp-teal);
-  color: white;
-}
-.task-checkbox-label {
-  font-size: 17px;
-  color: var(--camp-text);
-  line-height: 1.5;
-}
-.task-checkbox-checked .task-checkbox-label {
-  color: var(--camp-teal);
-}
-.task-checkbox-fish {
-  position: absolute;
-  right: 20px;
-  font-size: 24px;
-  animation: fish-pop 1s ease-out forwards;
-}
-@keyframes fish-pop {
-  0% { opacity: 1; transform: scale(0.5) translateY(0); }
-  50% { opacity: 1; transform: scale(1.2) translateY(-20px); }
-  100% { opacity: 0; transform: scale(1) translateY(-40px); }
-}
-
-/* Completion Button */
-.completion-button {
+.participants-count {
+  margin-top: 24px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 20px 48px;
-  background: linear-gradient(135deg, var(--camp-ocean), var(--camp-teal));
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-family: var(--font-noto-sans-jp), 'Noto Sans JP', sans-serif;
-  transition: all 0.3s ease;
-  margin-top: 32px;
-  box-shadow: 0 4px 20px rgba(91, 181, 213, 0.3);
-}
-.completion-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 32px rgba(91, 181, 213, 0.4);
-}
-.completion-button:active {
-  transform: scale(0.98);
+  align-items: baseline;
+  gap: 4px;
+  padding: 8px 20px;
+  background: rgba(200, 164, 78, 0.08);
+  border: 1px solid var(--camp-border);
 }
 
-/* =============================================
-   JOURNAL STYLE — iPhone Journal App Inspired
-   ポップで温かみのあるデザイン
-   ============================================= */
-
-/* Journal Card - メインカード */
-.journal-card {
-  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E6 100%);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 2px 12px rgba(200, 164, 78, 0.12);
-  border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.journal-card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.journal-card-emoji {
+.participants-count-num {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
   font-size: 28px;
-}
-
-.journal-card-label {
-  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-weight: 700;
   color: var(--camp-gold);
-  text-transform: uppercase;
 }
 
-.journal-card-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--camp-cream);
-  margin-bottom: 20px;
-  line-height: 1.3;
-}
-
-.journal-goals {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Journal style TaskCheckbox override */
-.journal-goals .task-checkbox {
-  background: white;
-  border: none;
-  border-radius: 12px;
-  padding: 16px 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.journal-goals .task-checkbox:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.journal-goals .task-checkbox-checked {
-  background: linear-gradient(135deg, #E8F8F6 0%, #DFF5F2 100%);
-}
-
-.journal-goals .task-checkbox-label {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--camp-text);
-}
-
-/* =============================================
-   GALLERY BUTTON & LP CARDS
-   ============================================= */
-
-.camp-gallery-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 16px 32px;
-  background: linear-gradient(135deg, var(--camp-ocean), var(--camp-teal));
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(91, 181, 213, 0.3);
-  transition: all 0.2s ease;
-}
-.camp-gallery-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(91, 181, 213, 0.4);
-}
-
-/* Gallery Page */
-.gallery-page {
-  min-height: 100vh;
-  padding: 80px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.gallery-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.gallery-title {
-  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-  font-size: clamp(28px, 5vw, 40px);
-  font-weight: 700;
-  color: var(--camp-cream);
-  margin-bottom: 12px;
-}
-
-.gallery-subtitle {
-  font-size: clamp(16px, 2.5vw, 18px);
+.participants-count-label {
+  font-size: 13px;
   color: var(--camp-text-dim);
-  line-height: 1.7;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+/* List */
+.participants-list-section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
 }
 
-/* LP Card */
-.lp-card {
-  display: block;
-  background: #FFFFFF;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-.lp-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.lp-card-thumbnail {
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #E8F4F8 0%, #D4EDF5 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.lp-card-body {
-  padding: 16px 20px;
-}
-
-.lp-card-nickname {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--camp-cream);
-}
-
-/* Placeholder fish animation */
-.lp-placeholder {
+.participants-list {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+/* Wide Card */
+.participant-card-wide {
+  background: var(--camp-card);
+  border: 1px solid var(--camp-border);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.participant-card-wide:hover {
+  border-color: var(--camp-gold-dim);
+  transform: translateY(-2px);
+}
+
+.participant-card-wide-left { flex-shrink: 0; }
+
+.participant-avatar-lg {
+  width: 56px;
+  height: 56px;
+  background: rgba(200, 164, 78, 0.12);
+  border: 1px solid var(--camp-border);
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--camp-gold);
+}
+
+.participant-card-wide-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.participant-nickname-lg {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--camp-cream);
+  margin-bottom: 8px;
+}
+
+.participant-meta-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.participant-meta-item {
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
 
-.lp-placeholder-fish {
-  font-size: 48px;
-  animation: fish-swim 3s ease-in-out infinite;
+.participant-meta-label {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--camp-text-dim);
+  text-transform: uppercase;
 }
 
-.lp-placeholder-bubbles {
-  display: flex;
-  gap: 6px;
+.participant-meta-value {
+  font-size: 13px;
+  color: var(--camp-text);
 }
 
-.lp-placeholder-bubble {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--camp-ocean-light);
-  animation: bubble-float 2s ease-in-out infinite;
+.participant-mono {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', monospace;
 }
 
-.lp-placeholder-bubble:nth-child(2) {
-  animation-delay: 0.3s;
-  width: 6px;
-  height: 6px;
+.participant-card-wide-action { flex-shrink: 0; }
+
+.participant-homework-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--camp-gold);
+  color: var(--camp-bg);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
 }
 
-.lp-placeholder-bubble:nth-child(3) {
-  animation-delay: 0.6s;
-  width: 10px;
-  height: 10px;
+.participant-homework-btn:hover { opacity: 0.85; }
+
+/* Empty */
+.participants-empty {
+  text-align: center;
+  padding: 80px 24px;
 }
 
-@keyframes bubble-float {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(-8px); opacity: 1; }
+.participants-empty-icon { font-size: 48px; margin-bottom: 16px; }
+
+.participants-empty-text {
+  font-size: 18px;
+  color: var(--camp-cream);
+  font-weight: 500;
 }
 
-/* Gallery responsive */
+.participants-empty-sub {
+  font-size: 13px;
+  color: var(--camp-text-dim);
+  margin-top: 8px;
+}
+
+/* Footer */
+.participants-footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid var(--camp-border);
+}
+
+.participants-footer-text {
+  font-size: 12px;
+  color: var(--camp-text-dim);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .gallery-page {
-    padding: 48px 20px;
-  }
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .participants-title { font-size: 32px; letter-spacing: 2px; }
+  .participants-header { min-height: 30dvh; padding: 48px 16px 32px; }
+  .participants-list-section { padding: 32px 16px 60px; }
+  .participants-back { top: 16px; left: 16px; }
+  .participant-card-wide {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
     gap: 16px;
   }
+  .participant-card-wide-action { width: 100%; }
+  .participant-homework-btn { width: 100%; justify-content: center; }
+  .participant-meta-row { gap: 12px; }
 }
