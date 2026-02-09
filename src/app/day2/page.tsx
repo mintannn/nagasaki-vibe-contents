@@ -1,5 +1,23 @@
+'use client'
+
 import { DayNav } from '@/components/day-nav'
 import { FadeSection } from '@/components/fade-section'
+import { CopyButton } from '@/components/copy-button'
+import { Accordion } from '@/components/accordion'
+import { TaskCheckbox } from '@/components/task-checkbox'
+
+// Helper component for copyable prompt boxes
+function CopyablePrompt({ label, labelClass, text, boxClass }: { label: string; labelClass?: string; text: string; boxClass?: string }) {
+  return (
+    <div className="slide-prompt-wrapper">
+      <div className={`slide-prompt-box ${boxClass || ''}`}>
+        <div className={`slide-prompt-label ${labelClass || ''}`}>{label}</div>
+        <div style={{ whiteSpace: 'pre-line' }}>{text}</div>
+      </div>
+      <CopyButton text={text} />
+    </div>
+  )
+}
 
 export default function Day2Page() {
   return (
@@ -100,12 +118,12 @@ export default function Day2Page() {
               </div>
             </div>
           </div>
-          <div className="slide-prompt-box">
-            <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-            長崎県茂木で獲れる魚の旬カレンダーアプリを作ってください。<br />
-            1月〜12月をタブで切り替えると、その月に旬の魚がカード形式で一覧表示されます。<br />
-            各カードには魚の名前、長崎での呼び名、一言コメントを表示してください。
-          </div>
+          <CopyablePrompt
+            label="PROMPT EXAMPLE"
+            text={`長崎県茂木で獲れる魚の旬カレンダーアプリを作ってください。
+1月〜12月をタブで切り替えると、その月に旬の魚がカード形式で一覧表示されます。
+各カードには魚の名前、長崎での呼び名、一言コメントを表示してください。`}
+          />
         </div>
 
         <div className="slide-step-divider">↓</div>
@@ -122,12 +140,12 @@ export default function Day2Page() {
               </div>
             </div>
           </div>
-          <div className="slide-prompt-box">
-            <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-            魚のカードをクリックしたら、詳細画面が表示されるようにしてください。<br />
-            詳細画面には、おすすめの食べ方、豆知識、旬の時期を表示してください。<br />
-            デザインはシンプルで見やすくしてください。
-          </div>
+          <CopyablePrompt
+            label="PROMPT EXAMPLE"
+            text={`魚のカードをクリックしたら、詳細画面が表示されるようにしてください。
+詳細画面には、おすすめの食べ方、豆知識、旬の時期を表示してください。
+デザインはシンプルで見やすくしてください。`}
+          />
         </div>
 
         <div className="slide-step-divider">↓</div>
@@ -144,12 +162,12 @@ export default function Day2Page() {
               </div>
             </div>
           </div>
-          <div className="slide-prompt-box">
-            <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-            詳細画面の下部に「この魚についてAIに聞く」チャット機能を追加してください。<br />
-            ユーザーが自由に質問を入力すると、AIが回答を返すようにしてください。<br />
-            APIキーを設定できるようにしてください。
-          </div>
+          <CopyablePrompt
+            label="PROMPT EXAMPLE"
+            text={`詳細画面の下部に「この魚についてAIに聞く」チャット機能を追加してください。
+ユーザーが自由に質問を入力すると、AIが回答を返すようにしてください。
+APIキーを設定できるようにしてください。`}
+          />
         </div>
       </FadeSection>
 
@@ -179,18 +197,9 @@ export default function Day2Page() {
 
         <div className="slide-stack">
           <div>
-            <div className="slide-done-item">
-              <div className="slide-done-check">□</div>
-              <div>v0にログインし、プロンプトを入力できた</div>
-            </div>
-            <div className="slide-done-item">
-              <div className="slide-done-check">□</div>
-              <div>AIが生成したUIを確認し、修正の指示を出せた</div>
-            </div>
-            <div className="slide-done-item">
-              <div className="slide-done-check">□</div>
-              <div>API連携（チャット機能）の仕組みを理解できた</div>
-            </div>
+            <TaskCheckbox id="day2-v0-login" label="v0にログインし、プロンプトを入力できた" />
+            <TaskCheckbox id="day2-v0-ui" label="AIが生成したUIを確認し、修正の指示を出せた" />
+            <TaskCheckbox id="day2-v0-api" label="API連携（チャット機能）の仕組みを理解できた" />
 
             <div className="slide-callout" style={{ marginTop: '32px' }}>
               <div className="slide-callout-icon">🎯</div>
@@ -328,16 +337,15 @@ export default function Day2Page() {
       {/* ===== APPENDIX: RESEARCH WITH PERPLEXITY ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">APPENDIX</div>
-        <div className="slide-title">リサーチをする</div>
+        <div className="slide-title">Perplexityでリサーチ</div>
         <div className="slide-subtitle">
-          AI検索ツール <em>Perplexity</em> を使えば、調べものが圧倒的に速くなります。<br />
-          調べた結果をそのままプロンプトに活用しましょう。
+          AI検索ツールを使えば、調べものが圧倒的に速くなります。
         </div>
 
-        <div className="slide-stack">
-          <div className="slide-card teal">
+        <Accordion title="🔍 Perplexity AI の使い方" id="appendix-perplexity">
+          <div className="slide-card teal" style={{ marginTop: '0' }}>
             <div className="slide-card-label">TOOL</div>
-            <div className="slide-card-title">Perplexity AI</div>
+            <div className="slide-card-title">Perplexity AI とは？</div>
             <div className="slide-card-body">
               AIが情報を要約してくれる検索エンジン。<br />
               Google検索のように使えて、出典付きで回答が返ってきます。<br /><br />
@@ -345,7 +353,7 @@ export default function Day2Page() {
             </div>
           </div>
 
-          <div className="slide-howto">
+          <div className="slide-howto" style={{ marginTop: '24px' }}>
             <div className="slide-features-label">HOW TO USE</div>
 
             <div className="slide-step">
@@ -382,14 +390,14 @@ export default function Day2Page() {
             </div>
           </div>
 
-          <div>
+          <div style={{ marginTop: '24px' }}>
             <div className="slide-features-label">EXAMPLE</div>
 
-            <div className="slide-prompt-box">
-              <div className="slide-prompt-label">PERPLEXITY に聞く</div>
-              長崎県茂木地区で水揚げされる魚の種類を教えてください。<br />
-              特に2月に旬を迎える魚と、地元での呼び名があれば知りたいです。
-            </div>
+            <CopyablePrompt
+              label="PERPLEXITY に聞く"
+              text={`長崎県茂木地区で水揚げされる魚の種類を教えてください。
+特に2月に旬を迎える魚と、地元での呼び名があれば知りたいです。`}
+            />
 
             <div className="slide-response-box">
               <div className="slide-response-label">PERPLEXITY の回答（例）</div>
@@ -405,15 +413,18 @@ export default function Day2Page() {
 
             <div className="slide-arrow-down">↓ この情報をそのままv0に</div>
 
-            <div className="slide-prompt-box gold-border">
-              <div className="slide-prompt-label gold">V0 に指示する</div>
-              以下の情報をもとに、茂木の旬カレンダーアプリを作ってください。<br /><br />
-              【2月の旬の魚】<br />
-              ・ブリ（地元名：ワカナ）- 脂がのった冬の味覚<br />
-              ・ヒラメ - 白身の最高峰、刺身が絶品<br />
-              ・アンコウ - 鍋料理で人気<br />
-              ・イカ（地元名：ミズイカ）- 透明で甘い
-            </div>
+            <CopyablePrompt
+              label="V0 に指示する"
+              labelClass="gold"
+              boxClass="gold-border"
+              text={`以下の情報をもとに、茂木の旬カレンダーアプリを作ってください。
+
+【2月の旬の魚】
+・ブリ（地元名：ワカナ）- 脂がのった冬の味覚
+・ヒラメ - 白身の最高峰、刺身が絶品
+・アンコウ - 鍋料理で人気
+・イカ（地元名：ミズイカ）- 透明で甘い`}
+            />
 
             <div className="slide-callout" style={{ marginTop: '24px' }}>
               <div className="slide-callout-icon">💡</div>
@@ -424,7 +435,7 @@ export default function Day2Page() {
               </div>
             </div>
           </div>
-        </div>
+        </Accordion>
       </FadeSection>
 
       {/* ===== SLIDE L2: WHY VALUE DESIGN ===== */}
@@ -712,172 +723,139 @@ export default function Day2Page() {
         </div>
       </FadeSection>
 
-      {/* ===== APPENDIX 1: DB & API ===== */}
-      <FadeSection className="slide slide-flow" id="appendix-db-api">
-        <div className="slide-tag">APPENDIX — EXTRA</div>
-        <div className="slide-title">DB連携とAPI連携</div>
-        <div className="slide-subtitle">v0で作ったアプリにデータベースやAPIを接続する方法を補足します。</div>
+      {/* ===== APPENDIX SECTION (Accordion) ===== */}
+      <FadeSection className="slide slide-flow">
+        <div className="slide-tag">APPENDIX</div>
+        <div className="slide-title">付録：もっと深く知りたい方へ</div>
+        <div className="slide-subtitle">クリックして展開してください。余裕がある方、挑戦したい方向けの情報です。</div>
 
-        <div className="slide-step">
-          <div className="slide-step-num icon">🗄️</div>
-          <div className="slide-step-content">
-            <div className="slide-step-title">データベース連携（Supabase）</div>
-            <div className="slide-step-desc">
-              v0で生成したアプリにデータの永続化を追加したい場合に使います。<br /><br />
-              <em className="gold">Supabase</em>（無料プランあり）はPostgreSQLベースのBaaSで、テーブル作成からCRUD操作まで、v0への指示で完結します。<br />
-              <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="slide-link teal">supabase.com →</a>
-            </div>
-            <div className="slide-prompt-box">
-              <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-              Supabaseをデータベースとして使い、ユーザーが魚の感想を投稿できる機能を追加してください。<br />
-              投稿にはユーザー名、魚の名前、感想テキスト、日付を含めてください。<br />
-              Supabaseの接続情報は環境変数から読み込むようにしてください。
-            </div>
-          </div>
-        </div>
-
-        <div className="slide-step">
-          <div className="slide-step-num icon">🤖</div>
-          <div className="slide-step-content">
-            <div className="slide-step-title">API連携（OpenAI APIによるチャット機能）</div>
-            <div className="slide-step-desc">
-              プロダクトにAIチャット機能を追加して、ユーザーの質問に自動で答えられるようにします。<br />
-              APIキーを環境変数に設定し、v0に「このAPIを使って」と指示するだけです。
-            </div>
-            <div className="slide-prompt-box">
-              <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-              OpenAI APIを使って、茂木の魚や水産業について質問できるチャット機能を追加してください。<br />
-              システムプロンプトに「茂木の水産業の専門家として回答してください」と設定してください。<br />
-              APIキーは環境変数 OPENAI_API_KEY から読み込んでください。
+        <Accordion title="📚 APPENDIX 1: DB連携とAPI連携" id="appendix-db-api">
+          <div className="slide-step">
+            <div className="slide-step-num icon">🗄️</div>
+            <div className="slide-step-content">
+              <div className="slide-step-title">データベース連携（Supabase）</div>
+              <div className="slide-step-desc">
+                v0で生成したアプリにデータの永続化を追加したい場合に使います。<br /><br />
+                <em className="gold">Supabase</em>（無料プランあり）はPostgreSQLベースのBaaSで、テーブル作成からCRUD操作まで、v0への指示で完結します。<br />
+                <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="slide-link teal">supabase.com →</a>
+              </div>
+              <CopyablePrompt
+                label="PROMPT EXAMPLE"
+                text={`Supabaseをデータベースとして使い、ユーザーが魚の感想を投稿できる機能を追加してください。
+投稿にはユーザー名、魚の名前、感想テキスト、日付を含めてください。
+Supabaseの接続情報は環境変数から読み込むようにしてください。`}
+              />
             </div>
           </div>
-        </div>
 
-        <div className="slide-callout">
-          <div className="slide-callout-icon">💡</div>
-          <div className="slide-callout-text">
-            ※ DB連携・API連携は今回のワークショップでは必須ではありません。<br />
-            余裕がある方、挑戦したい方向けの情報です。
-          </div>
-        </div>
-      </FadeSection>
-
-      {/* ===== APPENDIX 2: AI MENTORING ===== */}
-      <FadeSection className="slide slide-flow" id="appendix-ai-mentoring">
-        <div className="slide-tag">APPENDIX — AI壁打ち</div>
-        <div className="slide-title">AIとの壁打ちの進め方</div>
-        <div className="slide-subtitle">メンターがいなくても、<em>AIとの対話でセルフメンタリング</em>ができます。</div>
-
-        <div className="slide-card coral" style={{ marginBottom: '28px' }}>
-          <div className="slide-card-label">WHY</div>
-          <div className="slide-card-title">なぜAI壁打ちが有効なのか</div>
-          <div className="slide-card-body">
-            仕様を固めるとき、一人で考えていると行き詰まります。<br />
-            チームメンバーもそれぞれのプロダクトに集中しています。<br /><br />
-            そんなとき、<em>AIに壁打ち相手になってもらいましょう。</em><br /><br />
-            「こういうアイデアがあるんだけど、どう思う？」<br />
-            「ターゲットはこういう人なんだけど、ペインは何だと思う？」<br /><br />
-            AIは24時間いつでも対応してくれる<em>最強の壁打ち相手</em>です。
-          </div>
-        </div>
-
-        <div className="slide-step">
-          <div className="slide-step-num icon">🎙️</div>
-          <div className="slide-step-content">
-            <div className="slide-step-title">音声データをそのまま投げ込む</div>
-            <div className="slide-step-desc">
-              DAY1やDAY2の朝に録った音声メモの文字起こしをそのままAIに渡して、<br />
-              「ここから課題とアイデアを整理して」と指示しましょう。<br /><br />
-              <em className="gold">あなたの生の体験が、AIとの壁打ちの最高の素材になります。</em>
-            </div>
-            <div className="slide-prompt-box">
-              <div className="slide-prompt-label">PROMPT EXAMPLE</div>
-              以下は、茂木の漁港でフィールドワーク中に録音した音声メモの文字起こしです：<br /><br />
-              「漁師さんが朝5時から作業してて、でも魚の値段が安くて大変って言ってた。<br />
-              若い人が全然いなくて、後継者問題がすごい。<br />
-              でも魚はめちゃくちゃ美味しかった。直売所があったらいいのにって話してた。」<br /><br />
-              この内容から、ターゲットペルソナの候補と、解決すべき課題を整理してください。
+          <div className="slide-step">
+            <div className="slide-step-num icon">🤖</div>
+            <div className="slide-step-content">
+              <div className="slide-step-title">API連携（OpenAI APIによるチャット機能）</div>
+              <div className="slide-step-desc">
+                プロダクトにAIチャット機能を追加して、ユーザーの質問に自動で答えられるようにします。<br />
+                APIキーを環境変数に設定し、v0に「このAPIを使って」と指示するだけです。
+              </div>
+              <CopyablePrompt
+                label="PROMPT EXAMPLE"
+                text={`OpenAI APIを使って、茂木の魚や水産業について質問できるチャット機能を追加してください。
+システムプロンプトに「茂木の水産業の専門家として回答してください」と設定してください。
+APIキーは環境変数 OPENAI_API_KEY から読み込んでください。`}
+              />
             </div>
           </div>
-        </div>
+        </Accordion>
 
-        <div className="slide-step">
-          <div className="slide-step-num icon">💬</div>
-          <div className="slide-step-content">
-            <div className="slide-step-title">壁打ちのステップ</div>
-            <div className="slide-step-desc" style={{ lineHeight: 2.2 }}>
-              <em className="gold">1. 情報を渡す</em> — 音声メモ、写真の説明、気づきをAIに共有しましょう<br />
-              <em className="gold">2. 整理してもらう</em> — 課題、ターゲット、アイデアの候補を出してもらいましょう<br />
-              <em className="gold">3. 深掘りする</em> — 「もう少し詳しく」「別の角度は？」と対話を重ねましょう<br />
-              <em className="gold">4. 方針を決める</em> — 最終的にはあなたが判断し、仕様を固めましょう<br />
-              <em className="gold">5. 実装に移す</em> — 固まった仕様をv0に渡して、Vibeコーディングを始めましょう
-            </div>
-          </div>
-        </div>
-
-        <div className="slide-callout">
-          <div className="slide-callout-icon">🔑</div>
-          <div className="slide-callout-text">
-            <strong>大切なこと：</strong>AIの出力をそのまま使うのではなく、<br />
-            あなた自身の体験と判断を通してフィルターすることが重要です。<br />
-            AIは選択肢を広げてくれます。決めるのはあなたです。
-          </div>
-        </div>
-      </FadeSection>
-
-      {/* ===== APPENDIX 3: AI vs HUMAN ===== */}
-      <FadeSection className="slide slide-flow" id="appendix-column">
-        <div className="slide-tag">APPENDIX — COLUMN</div>
-        <div className="slide-title">コラム：AIと人の対話のバランス</div>
-        <div className="slide-subtitle">どこまでAIに任せ、どこは人と対話すべきか。</div>
-
-        <div className="slide-cols">
-          <div className="slide-card teal">
-            <div className="slide-card-label">AI に任せること</div>
-            <div className="slide-card-title" style={{ fontSize: '16px' }}>過去の情報・データ整理・既知の事実</div>
+        <Accordion title="💬 APPENDIX 2: AIとの壁打ちの進め方" id="appendix-ai-mentoring">
+          <div className="slide-card coral" style={{ marginBottom: '28px' }}>
+            <div className="slide-card-label">WHY</div>
+            <div className="slide-card-title">なぜAI壁打ちが有効なのか</div>
             <div className="slide-card-body">
-              リサーチ、構造化、コード生成、壁打ち<br />
-              「調べればわかること」はAIに聞きましょう
+              仕様を固めるとき、一人で考えていると行き詰まります。<br />
+              チームメンバーもそれぞれのプロダクトに集中しています。<br /><br />
+              そんなとき、<em>AIに壁打ち相手になってもらいましょう。</em><br /><br />
+              AIは24時間いつでも対応してくれる<em>最強の壁打ち相手</em>です。
             </div>
           </div>
-          <div className="slide-card coral">
-            <div className="slide-card-label">人と対話すべきこと</div>
-            <div className="slide-card-title" style={{ fontSize: '16px' }}>未来のビジョン・意志・価値観・判断</div>
-            <div className="slide-card-body">
-              体験の共有、感情の交換、意思決定、合意形成<br />
-              「人間にしかわからない感覚」はチームで話しましょう
+
+          <div className="slide-step">
+            <div className="slide-step-num icon">🎙️</div>
+            <div className="slide-step-content">
+              <div className="slide-step-title">音声データをそのまま投げ込む</div>
+              <div className="slide-step-desc">
+                DAY1やDAY2の朝に録った音声メモの文字起こしをそのままAIに渡して、<br />
+                「ここから課題とアイデアを整理して」と指示しましょう。<br /><br />
+                <em className="gold">あなたの生の体験が、AIとの壁打ちの最高の素材になります。</em>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="slide-card gold" style={{ marginTop: '20px' }}>
-          <div className="slide-card-body" style={{ fontSize: '15px', lineHeight: 2 }}>
-            実際に調べればわかるようなことは、AIにお願いしましょう。<br />
-            実際の自分の意見を他の人と対話を通じて共有したり、<br />
-            人間にしかわからない感覚を見極めたうえで、チーム内で対話しましょう。<br /><br />
-            <em>AIと人の対話をするバランスを自分たちで作っていく。</em><br />
-            それがこのワークショップの醍醐味です。
+          <div className="slide-step">
+            <div className="slide-step-num icon">💬</div>
+            <div className="slide-step-content">
+              <div className="slide-step-title">壁打ちのステップ</div>
+              <div className="slide-step-desc" style={{ lineHeight: 2.2 }}>
+                <em className="gold">1. 情報を渡す</em> — 音声メモ、写真の説明、気づきをAIに共有<br />
+                <em className="gold">2. 整理してもらう</em> — 課題、ターゲット、アイデアの候補を出してもらう<br />
+                <em className="gold">3. 深掘りする</em> — 「もう少し詳しく」「別の角度は？」と対話を重ねる<br />
+                <em className="gold">4. 方針を決める</em> — 最終的にはあなたが判断し、仕様を固める<br />
+                <em className="gold">5. 実装に移す</em> — 固まった仕様をv0に渡して、Vibeコーディング開始
+              </div>
+            </div>
           </div>
-        </div>
+        </Accordion>
 
-        <div className="slide-voice-box" style={{ marginTop: '28px' }}>
-          <div className="slide-voice-label">旅 × 音声 × VIBE CODING</div>
-          <div className="slide-voice-title">
-            歩いて、聞いて、感じて、話して、作る。
+        <Accordion title="⚖️ APPENDIX 3: AIと人の対話のバランス" id="appendix-column">
+          <div className="slide-cols">
+            <div className="slide-card teal">
+              <div className="slide-card-label">AI に任せること</div>
+              <div className="slide-card-title" style={{ fontSize: '16px' }}>過去の情報・データ整理・既知の事実</div>
+              <div className="slide-card-body">
+                リサーチ、構造化、コード生成、壁打ち<br />
+                「調べればわかること」はAIに聞きましょう
+              </div>
+            </div>
+            <div className="slide-card coral">
+              <div className="slide-card-label">人と対話すべきこと</div>
+              <div className="slide-card-title" style={{ fontSize: '16px' }}>未来のビジョン・意志・価値観・判断</div>
+              <div className="slide-card-body">
+                体験の共有、感情の交換、意思決定、合意形成<br />
+                「人間にしかわからない感覚」はチームで話しましょう
+              </div>
+            </div>
           </div>
-          <div className="slide-voice-body">
-            このサイクルの中で、AIは最高のアシスタントになります。<br />
-            でも主役はあなた自身です。あなたの体験と、チームとの対話が、<br />
-            世界にひとつだけのプロダクトを生み出します。
+
+          <div className="slide-card gold" style={{ marginTop: '20px' }}>
+            <div className="slide-card-body" style={{ fontSize: '15px', lineHeight: 2 }}>
+              実際に調べればわかるようなことは、AIにお願いしましょう。<br />
+              人間にしかわからない感覚を見極めたうえで、チーム内で対話しましょう。<br /><br />
+              <em>AIと人の対話をするバランスを自分たちで作っていく。</em><br />
+              それがこのワークショップの醍醐味です。
+            </div>
           </div>
-        </div>
+
+          <div className="slide-voice-box" style={{ marginTop: '28px' }}>
+            <div className="slide-voice-label">旅 × 音声 × VIBE CODING</div>
+            <div className="slide-voice-title">
+              歩いて、聞いて、感じて、話して、作る。
+            </div>
+            <div className="slide-voice-body">
+              このサイクルの中で、AIは最高のアシスタントになります。<br />
+              でも主役はあなた自身です。あなたの体験と、チームとの対話が、<br />
+              世界にひとつだけのプロダクトを生み出します。
+            </div>
+          </div>
+        </Accordion>
       </FadeSection>
 
       {/* ===== SLIDE: NIGHT SESSION ===== */}
       <FadeSection className="slide slide-flow slide-last">
         <div className="slide-tag">DAY 2 — NIGHT SESSION — 20:00〜</div>
         <div className="slide-title">夜のオープンセッション</div>
-        <div className="slide-subtitle">参加は自由です。リラックスしながら、<em>お互いの知見を持ち寄る時間</em>にしましょう。</div>
+        <div className="slide-subtitle">
+          参加は自由です。リラックスしながら、<em>お互いの知見を持ち寄る時間</em>にしましょう。<br />
+          <em>spark/minta</em>も参加しますので、気軽に相談してください。
+        </div>
 
         <div className="slide-card gold" style={{ marginBottom: '32px' }}>
           <div className="slide-card-label">ABOUT</div>
@@ -939,7 +917,10 @@ export default function Day2Page() {
       {/* ===== FOOTER ===== */}
       <footer className="slide-footer">
         <div className="slide-footer-left">VIBE CODING CAMP in NAGASAKI</div>
-        <div className="slide-footer-right">Content 2-4 — Night Session</div>
+        <div className="slide-footer-right">
+          <div>おさかなだお長崎 × ChibaTech web3 AI概論</div>
+          <div style={{ marginTop: '4px', opacity: 0.7 }}>© 2026 uni**</div>
+        </div>
       </footer>
     </div>
   )

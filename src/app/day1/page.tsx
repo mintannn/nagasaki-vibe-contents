@@ -1,5 +1,11 @@
+'use client'
+
+import Link from 'next/link'
 import { DayNav } from '@/components/day-nav'
 import { FadeSection } from '@/components/fade-section'
+import { YouTubeEmbed } from '@/components/youtube-embed'
+import { TaskCheckbox } from '@/components/task-checkbox'
+import { CompletionButton } from '@/components/completion-button'
 
 export default function Day1Page() {
   return (
@@ -57,6 +63,19 @@ export default function Day1Page() {
             LP作成済みの方は画面を見せながら。まだの方は口頭でOK。<br />
             <em>録音しておくと後でLP素材になります。</em>
           </div>
+
+          <div style={{ marginTop: '20px' }}>
+            <div style={{ fontSize: '14px', color: 'var(--camp-ocean)', marginBottom: '12px', fontWeight: 600 }}>
+              📺 事前宿題動画（自己紹介LPの作り方）
+            </div>
+            <YouTubeEmbed videoId="ZGTPgAT_k0E" title="自己紹介LP作成ガイド" />
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '24px' }}>
+            <Link href="/gallery" className="camp-gallery-btn">
+              🐟 皆さんの自己紹介LP集
+            </Link>
+          </div>
         </div>
       </FadeSection>
 
@@ -95,7 +114,7 @@ export default function Day1Page() {
             <span className="camp-agenda-title">&#10104; Vibeコーディングの目標</span>
             <span className="camp-agenda-time t3">5 min</span>
           </div>
-          <div className="camp-agenda-speaker">uni / minyo</div>
+          <div className="camp-agenda-speaker">spark / minta</div>
           <div className="camp-agenda-body">
             <div style={{ fontSize: '14px', color: 'var(--camp-teal)', marginBottom: '8px' }}>
               今回の旅におけるVibeコーディングのステップ
@@ -161,10 +180,10 @@ export default function Day1Page() {
         <div className="camp-section-label">TEAM</div>
         <div className="camp-section-title">チーム＆目標設定</div>
 
-        <div className="camp-check-item">チームを決める</div>
-        <div className="camp-check-item">チーム名を決める</div>
-        <div className="camp-check-item">個人目標を設定する</div>
-        <div className="camp-check-item">チーム目標を設定する</div>
+        <TaskCheckbox id="day1-team-decide" label="チームを決める" />
+        <TaskCheckbox id="day1-team-name" label="チーム名を決める" />
+        <TaskCheckbox id="day1-personal-goal" label="個人目標を設定する" />
+        <TaskCheckbox id="day1-team-goal" label="チーム目標を設定する" />
 
         <div className="camp-divider" />
 
@@ -186,7 +205,7 @@ export default function Day1Page() {
         </div>
 
         <div className="camp-callout">
-          <div className="camp-callout-title">「ジョイン」の精神</div>
+          <div className="camp-callout-title">「Join」の精神</div>
           <div className="camp-callout-body">
             訪問者と地域住民が相互に価値を提供し合う。<br />
             お金ではない価値の交換が、この合宿の核です。
@@ -252,10 +271,22 @@ export default function Day1Page() {
         </div>
       </FadeSection>
 
+      {/* ===== DAY1 COMPLETION ===== */}
+      <FadeSection className="camp-section" style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
+        <div className="camp-action-title" style={{ fontSize: '26px', marginBottom: '16px' }}>Day 1 おつかれさまでした！</div>
+        <div style={{ fontSize: '17px', color: 'var(--camp-text)', lineHeight: 1.9, marginBottom: '28px' }}>
+          今日の観光で感じたことを忘れないうちに記録しておきましょう。
+          明日のVibeコーディングで、この記録が活きてきます。
+        </div>
+        <CompletionButton label="Day 1 できた！" dayKey="day1-complete" />
+      </FadeSection>
+
       {/* ===== FOOTER ===== */}
       <div className="camp-footer">
         <div className="camp-footer-logo">VIBE CODING CAMP</div>
-        <div className="camp-footer-credit">おさかなだお長崎 × CIT Web3・AI概論</div>
+        <div className="camp-footer-credit">おさかなだお長崎 × ChibaTech web3 AI概論</div>
+        <div className="camp-footer-credit" style={{ marginTop: '8px', opacity: 0.7 }}>© 2026 uni**</div>
       </div>
     </div>
   )

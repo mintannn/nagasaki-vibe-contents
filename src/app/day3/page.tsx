@@ -1,6 +1,29 @@
+'use client'
+
+import Link from 'next/link'
 import { DayNav } from '@/components/day-nav'
 import { FadeSection } from '@/components/fade-section'
 import { ConfettiCanvas, ConfettiButton, FinaleButton, TeamCard } from '@/components/day3-interactive'
+import { CopyButton } from '@/components/copy-button'
+import { TaskCheckbox } from '@/components/task-checkbox'
+import { Accordion } from '@/components/accordion'
+
+const V0_TEMPLATE_PROMPT = `以下の情報をもとに、私の自己紹介LPに「Vibeコーディング合宿 in 長崎」の成果セクションを追加してください。
+
+【合宿概要】
+- 日程: 2026年2月13日〜15日
+- 場所: 長崎市茂木地区
+- テーマ: 旅 × 音声 × Vibeコーディング
+
+【追加してほしいセクション】
+「合宿の成果」というセクションを作成し、以下の発表内容を要約して掲載してください。
+チーム名、取り組んだ課題、作成したプロダクトURL、学んだことを抽出してください。
+
+【作成したプロダクトのURL】
+（ここにURLを手で貼り付けてください）
+
+【発表の文字起こし】
+`
 
 export default function Day3Page() {
   return (
@@ -16,21 +39,24 @@ export default function Day3Page() {
           最終日です。午前中はプロダクトの仕上げ、<em>11:30 – 12:30</em> に3日間の振り返り＆共有会を行います。
         </div>
 
-        <div className="slide-card gold">
-          <div className="slide-card-label">TODAY&apos;S SCHEDULE</div>
-          <div className="slide-card-title">本日のスケジュール</div>
-          <div className="slide-card-body">
-            <em>〜 11:00</em> — プロダクト最終調整・ブラッシュアップ<br />
-            <em>11:00 – 11:30</em> — 共有会の準備（URLの整理など）<br />
-            <em>11:30 – 12:30</em> — 🎤 3日間の振り返り＆共有会<br />
-            <em>12:30 –</em> — 記念撮影・解散
+        <div className="journal-card">
+          <div className="journal-card-header">
+            <span className="journal-card-emoji">📋</span>
+            <span className="journal-card-label">TODAY&apos;S GOALS</span>
+          </div>
+          <div className="journal-card-title">本日のゴール</div>
+          <div className="journal-goals">
+            <TaskCheckbox id="day3-goal-1" label="〜 11:00 プロダクト最終調整・ブラッシュアップ" />
+            <TaskCheckbox id="day3-goal-2" label="11:00 – 11:30 共有会の準備（URLの整理など）" />
+            <TaskCheckbox id="day3-goal-3" label="11:30 – 12:30 🎤 3日間の振り返り＆共有会" />
+            <TaskCheckbox id="day3-goal-4" label="12:30 – 記念撮影・解散" />
           </div>
         </div>
 
         {/* 3-day timeline */}
         <div className="d3-timeline">
           <div className="slide-tag">OUR JOURNEY</div>
-          <div className="slide-title" style={{ fontSize: '28px', marginBottom: '36px' }}>3日間の軌跡</div>
+          <div className="slide-card-title" style={{ marginBottom: '36px' }}>3日間の軌跡</div>
 
           {/* Day 1 */}
           <div className="d3-tl-day">
@@ -177,7 +203,7 @@ export default function Day3Page() {
 
         <div style={{ width: '100%' }}>
           <div className="slide-tag" style={{ textAlign: 'left' }}>AGENDA</div>
-          <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--camp-cream)', marginBottom: '8px', textAlign: 'left' }}>
+          <div className="slide-card-title" style={{ textAlign: 'left', marginBottom: '16px' }}>
             共有会の流れ
           </div>
         </div>
@@ -215,6 +241,43 @@ export default function Day3Page() {
             </div>
           </div>
         </div>
+
+        {/* 録音準備アコーディオン - チェックリストの前に配置 */}
+        <div style={{ width: '100%', marginTop: '40px' }}>
+          <Accordion title="📱 発表前に確認：録音しておこう" id="recording-accordion">
+            <div className="slide-card gold" style={{ marginTop: '0' }}>
+              <div className="slide-card-label">WHY</div>
+              <div className="slide-card-title">なぜ録音するの？</div>
+              <div className="slide-card-body">
+                後ほど<em>自己紹介LPに追加</em>するために録音しておいてください。<br /><br />
+                発表の内容は、あなたの学びの結晶です。<br />
+                V0のプロンプトと一緒に文字起こしを貼り付けるだけで、<br />
+                <em>あなただけの成果が一目でわかるLP</em>を作り上げましょう！
+              </div>
+            </div>
+
+            <div className="slide-card teal" style={{ marginTop: '16px' }}>
+              <div className="slide-card-label">HOW</div>
+              <div className="slide-card-title">録音の手順</div>
+              <div className="slide-card-body">
+                <em>1.</em> スマホの録音アプリを起動<br />
+                <em>2.</em> 発表中は録音を継続<br />
+                <em>3.</em> 終了後、音声ファイルを保存<br />
+                <em>4.</em> Appleのボイスメモ等で文字起こし<br />
+                <em>5.</em> 文字起こしをv0に渡してLP更新
+              </div>
+            </div>
+          </Accordion>
+        </div>
+
+        {/* チェックリスト */}
+        <div style={{ width: '100%', marginTop: '32px' }}>
+          <div className="slide-tag" style={{ textAlign: 'left', marginBottom: '16px' }}>CHECKLIST</div>
+          <TaskCheckbox id="day3-url-ready" label="URLを共有した" />
+          <TaskCheckbox id="day3-recording-ready" label="録音アプリを準備した" />
+          <TaskCheckbox id="day3-presentation-done" label="チーム発表を完了した" />
+          <TaskCheckbox id="day3-individual-share" label="個人の学びを共有した" />
+        </div>
       </FadeSection>
 
       {/* ===== 3-3: PHOTO ===== */}
@@ -238,6 +301,73 @@ export default function Day3Page() {
           </div>
         </div>
       </div>
+
+      {/* ===== LP HOMEWORK SECTION ===== */}
+      <FadeSection className="slide slide-flow">
+        <div className="slide-tag">NEXT STEP</div>
+        <div className="slide-title">自己紹介LPに成果を追加しよう</div>
+        <div className="slide-subtitle">
+          合宿の成果を自己紹介LPに残すことで、<em>この経験が資産</em>になります。
+        </div>
+
+        <div className="slide-cols">
+          <div className="slide-card teal">
+            <div className="slide-card-label">事前宿題で作成</div>
+            <div className="slide-card-title">自己紹介LP</div>
+            <div className="slide-card-body">
+              事前宿題として作成した自己紹介LP。<br />
+              今回の合宿での成果を追加して、<em>最終仕上げ</em>をしましょう。
+            </div>
+          </div>
+          <div className="slide-card coral">
+            <div className="slide-card-label">今回追加する内容</div>
+            <div className="slide-card-title">合宿の成果セクション</div>
+            <div className="slide-card-body">
+              ・チーム名と取り組んだ課題<br />
+              ・作成したプロダクトのURL<br />
+              ・学んだこと・気づき<br />
+              ・発表の内容（録音から要約）
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== V0 TEMPLATE PROMPT ===== */}
+      <FadeSection className="slide slide-flow">
+        <div className="slide-tag">TEMPLATE</div>
+        <div className="slide-title">V0用 定型プロンプト</div>
+        <div className="slide-subtitle">
+          このプロンプトをコピーして、v0に貼り付けてください。<br />
+          <em>[ ]内</em>を自分の情報に置き換えるだけでOKです。
+        </div>
+
+        <div className="slide-prompt-wrapper" style={{ marginTop: '24px' }}>
+          <div className="slide-prompt-box gold-border" style={{ whiteSpace: 'pre-line' }}>
+            <div className="slide-prompt-label gold">V0に貼り付けるプロンプト</div>
+            {V0_TEMPLATE_PROMPT}
+          </div>
+          <CopyButton text={V0_TEMPLATE_PROMPT} />
+        </div>
+
+        <div className="slide-callout" style={{ marginTop: '32px' }}>
+          <div className="slide-callout-icon">💡</div>
+          <div className="slide-callout-text">
+            <strong>Tips：</strong>プロダクトのURLは文字起こしに含まれないため、<br />
+            【作成したプロダクトのURL】の部分に手動で貼り付けてください。<br />
+            チーム名や学んだことも追記すると、より良いLPが生成されます。
+          </div>
+        </div>
+
+        {/* LP Gallery Link */}
+        <div style={{ textAlign: 'center', marginTop: '48px' }}>
+          <Link href="/gallery" className="camp-gallery-btn" style={{ padding: '18px 40px', fontSize: '18px' }}>
+            🐟 みんなの自己紹介 & 成果LP集
+          </Link>
+          <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--camp-text-dim)' }}>
+            ※ LPのURLが変わった場合は<a href="https://docs.google.com/forms/d/e/1FAIpQLSde7-FCsZabGK3yTT0812OlFJZq6kLFHk0lbxx552WNlJw0tQ/viewform" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--camp-teal)', textDecoration: 'underline' }}>最初のフォーム</a>から修正をお願いします
+          </div>
+        </div>
+      </FadeSection>
 
       {/* ===== 3-4: CLOSING ===== */}
       <FadeSection className="d3-closing">
@@ -268,8 +398,8 @@ export default function Day3Page() {
 
         <div className="d3-next-card">
           <div className="slide-card-label">NEXT STEP</div>
-          <div className="slide-card-title" style={{ fontSize: '18px' }}>これからも続けていくこと</div>
-          <div className="slide-card-body" style={{ fontSize: '14px', lineHeight: 1.9 }}>
+          <div className="slide-card-title">これからも続けていくこと</div>
+          <div className="slide-card-body">
             ・おさかなDAOで、今回検討した内容の議論を継続しましょう<br />
             ・作ったプロダクトのブラッシュアップ、新しいアイデアの実験<br />
             ・次の課題、次の地域、次のチャレンジへ<br /><br />
@@ -283,7 +413,10 @@ export default function Day3Page() {
       {/* ===== FOOTER ===== */}
       <footer className="slide-footer">
         <div className="slide-footer-left">VIBE CODING CAMP in NAGASAKI</div>
-        <div className="slide-footer-right">DAY 3 — Closing</div>
+        <div className="slide-footer-right">
+          <div>おさかなだお長崎 × ChibaTech web3 AI概論</div>
+          <div style={{ marginTop: '4px', opacity: 0.7 }}>© 2026 uni**</div>
+        </div>
       </footer>
     </div>
   )

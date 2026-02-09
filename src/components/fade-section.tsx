@@ -7,11 +7,13 @@ export function FadeSection({
   className,
   delay = 0,
   id,
+  style,
 }: {
   children: React.ReactNode
   className?: string
   delay?: number
   id?: string
+  style?: React.CSSProperties
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -43,6 +45,7 @@ export function FadeSection({
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+        ...style,
       }}
     >
       {children}
