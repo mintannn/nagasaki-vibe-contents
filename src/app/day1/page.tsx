@@ -222,6 +222,17 @@ export default function Day1Page() {
           この後の観光で、<em>1つ以上の「気づき」</em>を記録してください。
         </div>
 
+        <a
+          href="https://nagasaki-vibe-app.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="vibe-app-btn"
+        >
+          <span className="vibe-app-btn-icon">✨</span>
+          <span className="vibe-app-btn-text">記録はコチラから</span>
+          <span className="vibe-app-btn-arrow">→</span>
+        </a>
+
         <div className="camp-dest d1">
           <div className="camp-dest-name">原爆資料館</div>
           <div className="camp-dest-time">14:30 — 15:30（1h）</div>

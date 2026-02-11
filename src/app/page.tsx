@@ -34,6 +34,21 @@ export default function TopPage() {
         </div>
       </section>
 
+      {/* ===== VIBE APP CTA ===== */}
+      <section className="top-vibe-cta">
+        <a
+          href="https://nagasaki-vibe-app.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="vibe-app-btn hero-vibe-btn"
+        >
+          <span className="vibe-app-btn-glow" />
+          <span className="vibe-app-btn-icon">🚀</span>
+          <span className="vibe-app-btn-text">価値を創る</span>
+          <span className="vibe-app-btn-arrow">→</span>
+        </a>
+      </section>
+
       {/* ===== DAY SELECTION — 3 columns ===== */}
       <section className="top-days">
         <div className="top-days-header">
