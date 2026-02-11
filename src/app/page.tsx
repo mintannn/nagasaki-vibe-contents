@@ -5,6 +5,10 @@ export default function TopPage() {
     <div className="desktop-page">
       {/* ===== HERO — full viewport ===== */}
       <section className="top-hero">
+        <div className="top-hero-bg">
+          <img src="/hero-bg.png" alt="" className="top-hero-bg-img" />
+        </div>
+        <div className="top-hero-overlay" />
         <div className="top-wave-line" />
 
         <div className="top-hero-content">
@@ -97,17 +101,29 @@ export default function TopPage() {
         </div>
       </section>
 
-      {/* ===== PARTICIPANTS ===== */}
-      <section className="top-participants">
-        <div className="top-participants-inner">
-          <div className="top-days-label">MEMBERS</div>
-          <div className="top-days-title">Participants</div>
-          <p className="top-participants-desc">
-            チェックイン済みの参加者と事前宿題を確認できます
-          </p>
-          <Link href="/participants" className="top-participants-btn">
-            参加者一覧を見る →
-          </Link>
+      {/* ===== MEMBERS ===== */}
+      <section className="top-members">
+        <div className="top-members-inner">
+          <div className="top-members-content">
+            <div className="top-days-label">MEMBERS</div>
+            <div className="top-members-title">参加者一覧</div>
+            <p className="top-members-desc">
+              参加者のプロフィールと自己紹介LPを確認できます
+            </p>
+            <Link href="/participants" className="top-members-btn">
+              <span>メンバーを見る</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+          </div>
+          <div className="top-members-visual">
+            <div className="top-members-avatars">
+              <div className="top-members-avatar a1">🐟</div>
+              <div className="top-members-avatar a2">🐠</div>
+              <div className="top-members-avatar a3">🐡</div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -1,121 +1,87 @@
 export interface Participant {
-  discordId: string
   nickname: string
-  walletAddress: string
   homeworkUrl: string
-  checkedInAt: string
 }
 
-function parseCSV(csv: string): string[][] {
-  const rows: string[][] = []
+const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1R_w_zMKr9yhBHkvT419kd1CZuO8WOi31z4p5TmwLuDA/export?format=csv'
+
+// ニックネーム列のヘッダー名
+const NICKNAME_HEADER = 'あなたの呼ばれたいニックネーム'
+// LP URL列のヘッダー名
+const LP_URL_HEADER = '事前宿題のURL'
+
+function parseCSVLine(line: string): string[] {
+  const result: string[] = []
   let current = ''
   let inQuotes = false
-  let row: string[] = []
 
-  for (let i = 0; i < csv.length; i++) {
-    const ch = csv[i]
-    if (inQuotes) {
-      if (ch === '"' && csv[i + 1] === '"') {
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i]
+
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') {
         current += '"'
         i++
-      } else if (ch === '"') {
-        inQuotes = false
       } else {
-        current += ch
+        inQuotes = !inQuotes
       }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim())
+      current = ''
     } else {
-      if (ch === '"') {
-        inQuotes = true
-      } else if (ch === ',') {
-        row.push(current.trim())
-        current = ''
-      } else if (ch === '\n' || (ch === '\r' && csv[i + 1] === '\n')) {
-        row.push(current.trim())
-        current = ''
-        if (row.some(cell => cell !== '')) rows.push(row)
-        row = []
-        if (ch === '\r') i++
-      } else {
-        current += ch
-      }
+      current += char
     }
   }
-  if (current || row.length > 0) {
-    row.push(current.trim())
-    if (row.some(cell => cell !== '')) rows.push(row)
-  }
-  return rows
+
+  result.push(current.trim())
+  return result
 }
 
-const MOCK_PARTICIPANTS: Participant[] = [
-  {
-    discordId: 'sakana_dev#1234',
-    nickname: 'おさかなさん',
-    walletAddress: '0x1a2b3c4d5e6f7890abcdef1234567890abcdef12',
-    homeworkUrl: 'https://v0.dev/chat/example-1',
-    checkedInAt: '2026-02-10T10:00:00',
-  },
-  {
-    discordId: 'vibe_coder#5678',
-    nickname: 'バイブマスター',
-    walletAddress: '0xabcdef1234567890abcdef1234567890abcdef34',
-    homeworkUrl: 'https://v0.dev/chat/example-2',
-    checkedInAt: '2026-02-10T11:30:00',
-  },
-  {
-    discordId: 'nagasaki_fan#9012',
-    nickname: '長崎っ子',
-    walletAddress: '0x567890abcdef1234567890abcdef1234567890ab',
-    homeworkUrl: 'https://v0.dev/chat/example-3',
-    checkedInAt: '2026-02-11T09:15:00',
-  },
-  {
-    discordId: 'web3_builder#3456',
-    nickname: 'ウェブスリー',
-    walletAddress: '0xdef1234567890abcdef1234567890abcdef123456',
-    homeworkUrl: 'https://v0.dev/chat/example-4',
-    checkedInAt: '2026-02-11T14:00:00',
-  },
-  {
-    discordId: 'mogi_fish#7890',
-    nickname: '茂木のさかな',
-    walletAddress: '0x890abcdef1234567890abcdef1234567890abcdef',
-    homeworkUrl: 'https://v0.dev/chat/example-5',
-    checkedInAt: '2026-02-12T08:45:00',
-  },
-]
-
 export async function fetchParticipants(): Promise<Participant[]> {
-  const sheetId = process.env.NEXT_PUBLIC_SHEET_ID
-
-  if (!sheetId) {
-    console.log('[google-sheets] NEXT_PUBLIC_SHEET_ID not set — using mock data')
-    return MOCK_PARTICIPANTS
-  }
-
-  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`
-
   try {
-    const res = await fetch(url, { next: { revalidate: 60 } })
-    if (!res.ok) {
-      console.error(`[google-sheets] fetch failed: ${res.status}`)
+    const response = await fetch(SPREADSHEET_URL, {
+      next: { revalidate: 300 } // 5分ごとに再検証
+    })
+
+    if (!response.ok) {
+      console.error('Failed to fetch spreadsheet:', response.status)
       return []
     }
 
-    const csv = await res.text()
-    const rows = parseCSV(csv)
+    const csvText = await response.text()
+    const lines = csvText.split('\n').map(line => parseCSVLine(line))
 
-    // Skip header row (row 0)
-    // Columns: A=タイムスタンプ B=メールアドレス C=DiscordID D=ニックネーム E=事前宿題URL F=ウォレット
-    return rows.slice(1).map(row => ({
-      checkedInAt: row[0] ?? '',
-      discordId: row[2] ?? '',
-      nickname: row[3] ?? '',
-      homeworkUrl: row[4] ?? '',
-      walletAddress: row[5] ?? '',
-    }))
-  } catch (err) {
-    console.error('[google-sheets] error:', err)
+    if (lines.length < 2) {
+      return []
+    }
+
+    // ヘッダー行からカラムインデックスを特定
+    const headers = lines[0]
+    const nicknameIndex = headers.findIndex(h => h.includes(NICKNAME_HEADER))
+    const lpUrlIndex = headers.findIndex(h => h.includes(LP_URL_HEADER))
+
+    if (nicknameIndex === -1) {
+      console.error('Nickname column not found')
+      return []
+    }
+
+    // データ行をパース
+    const participants: Participant[] = []
+
+    for (let i = 1; i < lines.length; i++) {
+      const row = lines[i]
+      const nickname = row[nicknameIndex]?.trim() || ''
+      const homeworkUrl = lpUrlIndex !== -1 ? (row[lpUrlIndex]?.trim() || '') : ''
+
+      // ニックネームがあるエントリのみ追加
+      if (nickname) {
+        participants.push({ nickname, homeworkUrl })
+      }
+    }
+
+    return participants
+  } catch (error) {
+    console.error('Error fetching participants:', error)
     return []
   }
 }
