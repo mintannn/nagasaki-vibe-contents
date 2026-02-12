@@ -305,7 +305,7 @@ export default function Day1Page() {
 
         <div className="camp-car-share">
           <span className="camp-car-share-icon">🚗</span>
-          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム（ボイチャも活用🎧）</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム<br />（ボイチャも活用🎧）</span>
         </div>
 
         <div className="camp-dest d2">
@@ -316,7 +316,7 @@ export default function Day1Page() {
 
         <div className="camp-car-share">
           <span className="camp-car-share-icon">🚗</span>
-          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム（ボイチャも活用🎧）</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム<br />（ボイチャも活用🎧）</span>
         </div>
 
         <div className="camp-dest d3">
@@ -446,9 +446,11 @@ export default function Day1Page() {
         </div>
 
         <div className="slide-prompt-box">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', gap: '8px' }}>
             <div className="slide-card-title">v0用 定型プロンプト</div>
-            <CopyButton text={DAY1_SUMMARY_PROMPT} />
+            <div style={{ flexShrink: 0, fontSize: '12px' }}>
+              <CopyButton text={DAY1_SUMMARY_PROMPT} />
+            </div>
           </div>
           <pre className="slide-code-block" style={{ whiteSpace: 'pre-wrap', fontSize: '13px', lineHeight: 1.7, maxHeight: '300px', overflow: 'auto' }}>
 {DAY1_SUMMARY_PROMPT.trim()}
