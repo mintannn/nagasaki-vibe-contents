@@ -34,21 +34,6 @@ export default function TopPage() {
         </div>
       </section>
 
-      {/* ===== VIBE APP CTA ===== */}
-      <section className="top-vibe-cta">
-        <a
-          href="https://nagasaki-vibe-app.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="vibe-app-btn hero-vibe-btn"
-        >
-          <span className="vibe-app-btn-glow" />
-          <span className="vibe-app-btn-icon">🚀</span>
-          <span className="vibe-app-btn-text">価値を創る</span>
-          <span className="vibe-app-btn-arrow">→</span>
-        </a>
-      </section>
-
       {/* ===== DAY SELECTION — 3 columns ===== */}
       <section className="top-days">
         <div className="top-days-header">
@@ -113,6 +98,23 @@ export default function TopPage() {
               </svg>
             </div>
           </Link>
+        </div>
+      </section>
+
+      {/* ===== VIBE APP CTA ===== */}
+      <section className="top-vibe-cta" style={{ flexDirection: 'column' }}>
+        <a
+          href="https://nagasaki-vibe-app.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="vibe-app-btn hero-vibe-btn"
+        >
+          <span className="vibe-app-btn-glow" />
+          <span className="vibe-app-btn-text">価値を考えるアプリ</span>
+          <span className="vibe-app-btn-arrow">→</span>
+        </a>
+        <div style={{ fontSize: '11px', color: '#888', letterSpacing: '0.5px' }}>
+          このワークショップで皆さんに活用いただく記録アプリです。別途使い方は説明いたします。
         </div>
       </section>
 

@@ -14,7 +14,7 @@ export function LPCard({ participant }: LPCardProps) {
   const CardContent = (
     <>
       <div className="lp-card-thumbnail">
-        <LPPlaceholder />
+        <LPPlaceholder nickname={nickname} />
       </div>
       <div className="lp-card-body">
         <div className="lp-card-nickname">{nickname}</div>

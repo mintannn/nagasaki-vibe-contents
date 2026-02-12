@@ -24,12 +24,90 @@ export default function Day2Page() {
     <div className="desktop-page">
       <DayNav current={2} />
 
-      {/* ===== SLIDE 1: TITLE ===== */}
+      {/* ===== HERO ===== */}
       <FadeSection className="slide">
-        <div className="slide-tag">DAY 2 — LECTURE 1 — 11:00</div>
+        <div className="slide-tag">DAY 2 — 2026.2.14 FRI</div>
+        <div className="slide-title">フィールドワーク<br />× 開発 × 交流</div>
+        <div className="slide-subtitle">
+          朝の漁港から夜のBBQまで。<em>見て、学んで、作って、語る</em>1日。
+        </div>
+
+        <div className="slide-stack">
+          <div className="slide-card teal">
+            <div className="slide-card-label">TODAY&apos;S FLOW</div>
+            <div className="slide-card-title">1日の流れ</div>
+            <div className="slide-card-body" style={{ lineHeight: 2.2 }}>
+              <strong>9:00</strong> — フィールドワーク（茂木漁港）<br />
+              <strong>10:30</strong> — レクチャー1: v0 on PC ハンズオン<br />
+              <strong>12:00</strong> — 昼食<br />
+              <strong>13:00</strong> — レクチャー2: 事業開発 × チーム開発<br />
+              <strong>18:20</strong> — BBQ<br />
+              <strong>20:00</strong> — 夜セッション（任意）
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== FIELD WORK — 9:00〜 ===== */}
+      <FadeSection className="slide slide-flow">
+        <div className="slide-tag">FIELD WORK — 9:00</div>
+        <div className="slide-title">茂木地区<br />フィールドワーク</div>
+        <div className="slide-subtitle">
+          漁港を訪問し、茂木の<em>気づき・魅力・課題</em>を探索しましょう。<br />
+          朝食もこの時間帯にとります。
+        </div>
+
+        <div className="slide-stack">
+          <div className="slide-card coral">
+            <div className="slide-card-label">MISSION</div>
+            <div className="slide-card-title">見て、聞いて、感じて、記録する</div>
+            <div className="slide-card-body">
+              茂木漁港を歩きながら、五感で感じたことを記録してください。<br /><br />
+              <em>地元の方との会話</em>、漁港の風景、朝の空気 ——<br />
+              すべてが午後のアプリ開発の素材になります。<br /><br />
+              DAY1の観光で感じたこととの違いや共通点にも注目してみましょう。
+            </div>
+          </div>
+
+          <div className="slide-card teal">
+            <div className="slide-card-label">RECORDING</div>
+            <div className="slide-card-title">記録方法</div>
+            <div className="slide-card-body">
+              DAY1と同じ方法で記録しましょう。<br /><br />
+              <span style={{ fontSize: '18px' }}>🎙</span> <em>音声メモ</em>（推奨）<br />
+              <span style={{ fontSize: '18px' }}>📷</span> 写真<br />
+              <span style={{ fontSize: '18px' }}>📝</span> テキストメモ<br /><br />
+              気づいたことは、どんな小さなことでも記録しておくと<br />
+              午後のプロンプトの種になります。
+            </div>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '32px' }}>
+          <a
+            href="https://nagasaki-vibe-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vibe-app-btn"
+            style={{ fontSize: '17px', padding: '18px 40px' }}
+          >
+            <span className="vibe-app-btn-icon">✨</span>
+            <span className="vibe-app-btn-text">価値を考えるアプリ</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+          <div style={{ fontSize: '13px', color: 'var(--camp-text-dim)', marginTop: '12px' }}>
+            気づき・魅力・課題をここから記録してください
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== LECTURE 1: v0 on PC ===== */}
+      <FadeSection className="slide">
+        <div className="slide-tag">LECTURE 1 — 10:30</div>
         <div className="slide-title">Vibeコーディング<br />ハンズオン</div>
         <div className="slide-subtitle">
-          まずは作る体験。<em>v0</em> を使って、AIと会話しながらアプリを作ってみよう。
+          フィールドワークから戻って、宿泊施設でのレクチャー。<br />
+          <em>v0 on PC</em> を使って、AIと会話しながらアプリを作ってみよう。
         </div>
 
         <div className="slide-stack">
@@ -43,10 +121,10 @@ export default function Day2Page() {
           </div>
           <div className="slide-card gold">
             <div className="slide-card-label">TOOL</div>
-            <div className="slide-card-title">v0 by Vercel</div>
+            <div className="slide-card-title">v0 by Vercel — PC版</div>
             <div className="slide-card-body">
-              自然言語でUIを生成するAIツール。<br />
-              日本語で指示を出すだけで、動くアプリが出来上がります。<br /><br />
+              DAY1ではスマホで体験しましたが、今日は<em>PCでより本格的に</em>取り組みます。<br />
+              画面が広い分、複雑なUIも作りやすく、コードの確認もスムーズです。<br /><br />
               <a href="https://v0.dev" target="_blank" rel="noopener noreferrer" className="slide-link teal">v0.dev →</a>
             </div>
           </div>
@@ -212,15 +290,15 @@ APIキーを設定できるようにしてください。`}
 
           <div className="slide-card teal">
             <div className="slide-card-label">NEXT — AFTER LUNCH</div>
-            <div className="slide-card-title">午後のレク2・3でやること</div>
+            <div className="slide-card-title">午後のレク2でやること</div>
             <div className="slide-card-body" style={{ lineHeight: 2 }}>
               午前はみんなで同じテーマで練習しました。<br /><br />
               午後からは<em>自分たちで課題とターゲットを設定</em>し、<br />
               事業開発フレームワークで整理したうえで、<br />
-              本格的なVibeコーディングに入ります。<br /><br />
+              チームでのVibeコーディングに入ります。<br /><br />
               <span className="slide-card-sub-note">
-                バグリスト → VPC → ペルソナ → マイクロジャーニー<br />
-                → プロダクトデザイン → Vibeコーディング
+                ペルソナ → VPC → マイクロジャーニー<br />
+                → チーム議論 → Vibeコーディング
               </span>
             </div>
           </div>
@@ -240,7 +318,7 @@ APIキーを設定できるようにしてください。`}
               <span>FW</span>
               <span className="text-coral">レク1 ←今</span>
               <span>レク2</span>
-              <span>レク3</span>
+              <span>BBQ</span>
               <span>DAY3 発表</span>
             </div>
           </div>
@@ -438,9 +516,24 @@ APIキーを設定できるようにしてください。`}
         </Accordion>
       </FadeSection>
 
-      {/* ===== SLIDE L2: WHY VALUE DESIGN ===== */}
+      {/* ===== LUNCH — 12:00 ===== */}
+      <FadeSection className="slide slide-flow" style={{ minHeight: 'auto', paddingTop: '60px', paddingBottom: '60px' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div className="lunch-badge">
+            <span className="lunch-badge-icon">🍴</span>
+            <span className="lunch-badge-text">LUNCH — 12:00</span>
+          </div>
+          <div className="slide-title" style={{ fontSize: 'clamp(28px, 5vw, 36px)', marginTop: '16px' }}>昼食</div>
+          <div className="slide-subtitle" style={{ marginBottom: 0 }}>
+            午前のレクチャーおつかれさまでした。<br />
+            しっかり食べて、午後のチーム開発に備えましょう。
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== LECTURE 2: VALUE DESIGN ===== */}
       <FadeSection className="slide slide-flow">
-        <div className="slide-tag">DAY 2 — LECTURE 2 &amp; 3 — 13:00</div>
+        <div className="slide-tag">LECTURE 2 — 13:00</div>
         <div className="slide-title">作る前に、設計する。</div>
         <div className="slide-subtitle">
           いいプロダクトは、いい技術ではなく<em>いい価値設計</em>から生まれる。
@@ -493,7 +586,7 @@ APIキーを設定できるようにしてください。`}
         </div>
       </FadeSection>
 
-      {/* ===== SLIDE L2-2: 3 FRAMEWORKS ===== */}
+      {/* ===== 3 FRAMEWORKS ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">FRAMEWORKS</div>
         <div className="slide-title">3つのフレームワーク</div>
@@ -580,7 +673,7 @@ APIキーを設定できるようにしてください。`}
             <div className="slide-progress-seg done" />
             <div className="slide-progress-seg done" />
             <div className="slide-progress-seg current" />
-            <div className="slide-progress-seg current" />
+            <div className="slide-progress-seg" />
             <div className="slide-progress-seg" />
           </div>
           <div className="slide-progress-labels">
@@ -588,17 +681,34 @@ APIキーを設定できるようにしてください。`}
             <span>FW</span>
             <span>レク1</span>
             <span className="text-coral">レク2 ←今</span>
-            <span className="text-coral">レク3</span>
+            <span>BBQ</span>
             <span>DAY3 発表</span>
           </div>
         </div>
       </FadeSection>
 
-      {/* ===== SLIDE L2-3: AFTERNOON FLOW ===== */}
+      {/* ===== AFTERNOON FLOW ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">PROCESS FLOW</div>
         <div className="slide-title">午後の流れ</div>
         <div className="slide-subtitle">チームで議論し、フレームワークを埋め、Vibeコーディングに入りましょう。</div>
+
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div style={{ fontSize: '14px', color: 'var(--camp-text-dim)', marginBottom: '12px' }}>
+            フレームワークの記入・チーム議論にはこのアプリを活用してください
+          </div>
+          <a
+            href="https://nagasaki-vibe-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vibe-app-btn"
+            style={{ fontSize: '17px', padding: '18px 40px' }}
+          >
+            <span className="vibe-app-btn-icon">✨</span>
+            <span className="vibe-app-btn-text">価値を考えるアプリ</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+        </div>
 
         <div className="slide-step">
           <div className="slide-step-num">01</div>
@@ -665,13 +775,36 @@ APIキーを設定できるようにしてください。`}
             遠慮なくAIに投げ込んでみましょう。
           </div>
         </div>
+
+        {/* チーム開発の運用ルール */}
+        <div className="slide-card gold" style={{ marginTop: '24px' }}>
+          <div className="slide-card-label">TEAM DEV RULES</div>
+          <div className="slide-card-title">チーム開発の進め方</div>
+          <div className="slide-card-body" style={{ lineHeight: 2.2 }}>
+            <em>オンライン参加の方</em> — 個別開発で進めてください。<br />
+            <em>質問・相談</em> — spark / minta へ気軽にどうぞ（リアルでもDiscordでもOK）。<br />
+            <em>18:20まで自由作業</em> — 宿泊施設での開発、外出しての取材など自由です。<br /><br />
+            応用編の他ツール（DB連携、API連携など）も必要に応じてお話しできます。
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '20px' }}>
+          <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" className="vibe-app-btn" style={{ margin: 0, fontSize: '13px', padding: '10px 20px' }}>
+            <span className="vibe-app-btn-text">Claude</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+          <a href="https://www.createanything.com/" target="_blank" rel="noopener noreferrer" className="vibe-app-btn" style={{ margin: 0, fontSize: '13px', padding: '10px 20px' }}>
+            <span className="vibe-app-btn-text">Anything</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+        </div>
       </FadeSection>
 
-      {/* ===== SLIDE L2-4: TIMELINE ===== */}
+      {/* ===== TIMELINE ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">TIMELINE</div>
         <div className="slide-title">タイムライン</div>
-        <div className="slide-subtitle">13:00 — 20:00 のスケジュールです。</div>
+        <div className="slide-subtitle">13:00 — 18:20 のスケジュールです。</div>
 
         <div className="slide-tl-grid">
           <div className="slide-tl-card active">
@@ -685,14 +818,9 @@ APIキーを設定できるようにしてください。`}
             <div className="slide-tl-desc">ミッション設定＋プロダクト設計</div>
           </div>
           <div className="slide-tl-card">
-            <div className="slide-tl-time">15:30 – 18:30</div>
-            <div className="slide-tl-title">レク3</div>
-            <div className="slide-tl-desc">Vibeコーディング実践</div>
-          </div>
-          <div className="slide-tl-card">
-            <div className="slide-tl-time">18:30 – 20:00</div>
-            <div className="slide-tl-title">仕上げ</div>
-            <div className="slide-tl-desc">ブラッシュアップ＋発表準備</div>
+            <div className="slide-tl-time">15:00 – 18:20</div>
+            <div className="slide-tl-title">自由開発</div>
+            <div className="slide-tl-desc">Vibeコーディング実践（外出・取材も自由）</div>
           </div>
         </div>
 
@@ -702,7 +830,7 @@ APIキーを設定できるようにしてください。`}
             <div className="slide-progress-seg done" />
             <div className="slide-progress-seg done" />
             <div className="slide-progress-seg current" />
-            <div className="slide-progress-seg current" />
+            <div className="slide-progress-seg" />
             <div className="slide-progress-seg" />
           </div>
           <div className="slide-progress-labels">
@@ -710,7 +838,7 @@ APIキーを設定できるようにしてください。`}
             <span>FW</span>
             <span>レク1</span>
             <span className="text-coral">レク2 ←今</span>
-            <span className="text-coral">レク3</span>
+            <span>BBQ</span>
             <span>DAY3 発表</span>
           </div>
         </div>
@@ -848,13 +976,45 @@ APIキーは環境変数 OPENAI_API_KEY から読み込んでください。`}
         </Accordion>
       </FadeSection>
 
-      {/* ===== SLIDE: NIGHT SESSION ===== */}
+      {/* ===== BBQ — 18:20〜 ===== */}
+      <FadeSection className="slide slide-flow">
+        <div className="slide-tag">BBQ — 18:20</div>
+        <div className="slide-title">BBQ</div>
+        <div className="slide-subtitle">
+          開発おつかれさまでした！<em>美味しいご飯を食べながら、交流を楽しみましょう。</em>
+        </div>
+
+        <div className="slide-stack">
+          <div className="slide-card coral">
+            <div className="slide-card-label">DINNER</div>
+            <div className="slide-card-title">一番は、思いっきり楽しむこと！</div>
+            <div className="slide-card-body">
+              今日一日、フィールドワークからレクチャー、チーム開発とお疲れさまでした。<br /><br />
+              美味しいBBQを囲みながら、チームメンバーや他の参加者と<em>自由に語り合いましょう</em>。<br /><br />
+              何気ない会話の中にも、課題解決のヒントやアプリのアイデアが見つかるかもしれません。<br />
+              でもまずは、食べて飲んで、<em>楽しむこと</em>が一番大事です！
+            </div>
+          </div>
+
+          <div className="slide-card teal">
+            <div className="slide-card-label">HINT</div>
+            <div className="slide-card-title">交流の中にヒントがある</div>
+            <div className="slide-card-body">
+              地元の方との会話、他チームのアイデア、参加者それぞれの経験 ——<br />
+              リラックスした雰囲気だからこそ聞ける話があります。<br /><br />
+              もし何か気づいたことがあれば、忘れないうちにメモしておきましょう。
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== NIGHT SESSION ===== */}
       <FadeSection className="slide slide-flow slide-last">
-        <div className="slide-tag">DAY 2 — NIGHT SESSION — 20:00〜</div>
+        <div className="slide-tag">NIGHT SESSION — 20:00〜</div>
         <div className="slide-title">夜のオープンセッション</div>
         <div className="slide-subtitle">
-          参加は自由です。リラックスしながら、<em>お互いの知見を持ち寄る時間</em>にしましょう。<br />
-          <em>spark/minta</em>も参加しますので、気軽に相談してください。
+          <em>参加は任意</em>です。リラックスしながら、<em>お互いの知見を持ち寄る時間</em>にしましょう。<br />
+          <em>spark/minta</em>が壁打ち・応用編のお話をします。
         </div>
 
         <div className="slide-card gold" style={{ marginBottom: '32px' }}>
@@ -908,8 +1068,9 @@ APIキーは環境変数 OPENAI_API_KEY から読み込んでください。`}
         <div className="slide-callout" style={{ marginTop: '40px' }}>
           <div className="slide-callout-icon">🌙</div>
           <div className="slide-callout-text">
-            <strong>任意参加です。</strong>無理のない範囲で、来たいときに来てください。<br />
-            明日のDAY3に向けて、ゆっくり休むのもとても大事です。
+            <strong>参加は任意です。</strong>無理のない範囲で、来たいときに来てください。<br />
+            チーム開発を続けるもよし、ゆっくり休むもよし。<br />
+            明日のDAY3に向けて、自分のペースで過ごしてください。
           </div>
         </div>
       </FadeSection>

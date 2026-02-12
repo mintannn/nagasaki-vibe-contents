@@ -6,6 +6,50 @@ import { FadeSection } from '@/components/fade-section'
 import { YouTubeEmbed } from '@/components/youtube-embed'
 import { TaskCheckbox } from '@/components/task-checkbox'
 import { CompletionButton } from '@/components/completion-button'
+import { CopyButton } from '@/components/copy-button'
+
+const DAY1_SUMMARY_PROMPT = `# Day 1 まとめLP作成プロンプト
+
+あなたはWebデザイナー兼ファシリテーターです。
+以下は「Vibeコーディング合宿 in 長崎」Day1の帰りの車内で、チームが1日を振り返って議論した音声の文字起こしです。
+
+この内容をもとに、チームのDay1まとめページ（LP）を作成してください。
+
+## 出力要件
+- モダンでおしゃれな1ページのLP（HTMLで完結）
+- ダーク基調のデザイン
+- 以下のセクションを含めること：
+
+### 1. チーム紹介
+- チーム名（議論から推測、なければ仮名）
+- メンバーの名前・役割
+
+### 2. 今日の気づき・学び
+- 原爆資料館、出島、大浦天主堂など訪問先ごとの気づき
+- 印象に残ったこと
+
+### 3. 発見した課題・可能性
+- 長崎の地域課題で気になったもの
+- 「こうしたらもっと良くなるのでは？」というアイデア
+
+### 4. 明日への仮説
+- 明日の漁港訪問に向けて検証したい仮説
+- 仮のターゲットユーザー像
+- 仮の課題定義（誰の、どんな困りごとを解決したいか）
+
+### 5. チームの意気込み
+- 明日のアプリ制作に向けた一言
+
+## 注意事項
+- 議論の中で出てきた具体的なエピソードや固有名詞はそのまま活かす
+- メンバーの発言のニュアンスを大切にする
+- 明日（Day2）は漁港訪問→課題定義→Vibeコーディングでアプリ制作の流れ
+
+---
+
+## 以下、音声の文字起こし：
+
+`
 
 export default function Day1Page() {
   return (
@@ -80,7 +124,11 @@ export default function Day1Page() {
       </FadeSection>
 
       {/* ===== 1-2: LUNCH LECTURE ===== */}
-      <FadeSection className="camp-section">
+      <FadeSection className="camp-section lunch-section">
+        <div className="lunch-badge">
+          <span className="lunch-badge-icon">🍴</span>
+          <span className="lunch-badge-text">ランチを食べながら</span>
+        </div>
         <div className="camp-section-label">LUNCH LECTURE</div>
         <div className="camp-section-title">アジェンダ</div>
 
@@ -173,6 +221,21 @@ export default function Day1Page() {
             <div className="camp-step-desc">記録した音声・気づきが、明日のバイブコーディングの入力データになる。</div>
           </div>
         </div>
+
+        <div style={{ textAlign: 'center', marginTop: '32px' }}>
+          <div style={{ fontSize: '13px', color: 'var(--camp-text-dim)', marginBottom: '12px' }}>
+            このコンセプトを実践するアプリはこちら
+          </div>
+          <a
+            href="https://nagasaki-vibe-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vibe-app-btn"
+          >
+            <span className="vibe-app-btn-text">価値を考えるアプリ</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+        </div>
       </FadeSection>
 
       {/* ===== TEAM & GOALS ===== */}
@@ -219,7 +282,7 @@ export default function Day1Page() {
         <div className="camp-section-title">長崎を感じて、記録する</div>
 
         <div className="camp-action-desc" style={{ marginBottom: '20px' }}>
-          この後の観光で、<em>1つ以上の「気づき」</em>を記録してください。
+          この後の見学で、<em>1つ以上の「気づき」</em>を記録してください。
         </div>
 
         <a
@@ -239,10 +302,20 @@ export default function Day1Page() {
           <div className="camp-dest-desc">平和への祈りと歴史。心に残ったことを記録しよう。</div>
         </div>
 
+        <div className="camp-car-share">
+          <span className="camp-car-share-icon">🚗</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム</span>
+        </div>
+
         <div className="camp-dest d2">
           <div className="camp-dest-name">出島</div>
           <div className="camp-dest-time">15:50 — 16:20（30min）</div>
           <div className="camp-dest-desc">和華蘭文化の原点。異文化交流の歴史を体感。</div>
+        </div>
+
+        <div className="camp-car-share">
+          <span className="camp-car-share-icon">🚗</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム</span>
         </div>
 
         <div className="camp-dest d3">
@@ -282,13 +355,145 @@ export default function Day1Page() {
         </div>
       </FadeSection>
 
+      {/* ===== 懇親会 ===== */}
+      <FadeSection className="camp-section">
+        <div className="camp-section-label">DINNER</div>
+        <div className="camp-section-title">懇親会</div>
+
+        <div className="camp-action-desc" style={{ marginBottom: '16px' }}>
+          今日の見学を終えて、リラックスした雰囲気で交流しましょう。<br />
+          チームメンバーや他の参加者と、見学で感じたことを自由に語り合う時間です。
+        </div>
+
+        <div className="camp-callout">
+          <div className="camp-callout-title">楽しむことが一番大事</div>
+          <div className="camp-callout-body">
+            ここでは堅い話は不要です。美味しいごはんを食べながら、たくさんお話ししましょう。<br />
+            何気ない会話の中に、明日のアイデアの種が隠れているかもしれません。
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== 稲佐山 ===== */}
+      <FadeSection className="camp-section">
+        <div className="camp-section-label">NIGHT VIEW</div>
+        <div className="camp-section-title">稲佐山展望台</div>
+
+        <div className="camp-action-desc" style={{ marginBottom: '16px' }}>
+          <em>世界新三大夜景</em>に選ばれた、稲佐山からの絶景を楽しみましょう。<br />
+          もし何か気づきがあれば、忘れないうちにアプリに記録しておこう。
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <a
+            href="https://nagasaki-vibe-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vibe-app-btn"
+          >
+            <span className="vibe-app-btn-text">気づきを記録する</span>
+            <span className="vibe-app-btn-arrow">→</span>
+          </a>
+        </div>
+      </FadeSection>
+
+      {/* ===== 茂木への移動 & 1日の振り返り ===== */}
+      <FadeSection className="camp-section">
+        <div className="camp-section-label">WRAP UP</div>
+        <div className="camp-section-title">茂木への移動（約45分）</div>
+
+        <div className="camp-action-desc" style={{ marginBottom: '20px' }}>
+          Day 1 最後のセッションです。<br />
+          チームごとに車に分かれて、<em>今日1日の振り返りと明日への準備</em>を行います。
+        </div>
+
+        <div className="slide-theme-box" style={{ marginBottom: '24px' }}>
+          <div className="slide-card-title">車内ディスカッションのテーマ</div>
+          <div className="camp-check-item">今日一番印象に残った場所・体験は？</div>
+          <div className="camp-check-item">長崎の課題で気になったものは？</div>
+          <div className="camp-check-item">「こうすればもっと良くなるのでは？」というアイデア</div>
+          <div className="camp-check-item">明日の漁港訪問で確かめたいこと</div>
+          <div className="camp-check-item">仮のターゲットユーザーと課題の方向性</div>
+        </div>
+
+        <div className="camp-callout" style={{ borderLeftColor: 'var(--camp-coral)' }}>
+          <div className="camp-callout-title">🎙 代表者1名がボイスメモで録音してください</div>
+          <div className="camp-callout-body">
+            チームの議論をまるごと録音しておいてください。<br />
+            この録音が、次のまとめページ作成の素材になります。
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ===== DAY1 まとめLP作成セッション ===== */}
+      <FadeSection className="camp-section">
+        <div className="camp-section-label">BUILD SESSION</div>
+        <div className="camp-section-title">Day 1 まとめLP作成</div>
+
+        <div className="camp-action-desc" style={{ marginBottom: '20px' }}>
+          車内ディスカッションの録音を文字起こしして、<br />
+          以下の定型プロンプトと一緒に <strong>v0</strong> に貼り付けるだけで、<br />
+          チームの Day 1 まとめページが自動生成されます。
+        </div>
+
+        <div className="slide-theme-box" style={{ marginBottom: '20px' }}>
+          <div className="slide-card-title">手順</div>
+          <div className="camp-check-item">① 録音した音声を文字起こし（スマホの音声入力やAIツールを活用）</div>
+          <div className="camp-check-item">② 下の定型プロンプトをコピー</div>
+          <div className="camp-check-item">③ v0.dev を開いてプロンプトを貼り付け</div>
+          <div className="camp-check-item">④ プロンプトの末尾に文字起こしテキストを追加して送信</div>
+        </div>
+
+        <div className="slide-prompt-box">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+            <div className="slide-card-title">v0用 定型プロンプト</div>
+            <CopyButton text={DAY1_SUMMARY_PROMPT} />
+          </div>
+          <pre className="slide-code-block" style={{ whiteSpace: 'pre-wrap', fontSize: '13px', lineHeight: 1.7, maxHeight: '300px', overflow: 'auto' }}>
+{DAY1_SUMMARY_PROMPT.trim()}
+          </pre>
+        </div>
+
+        <div style={{ fontSize: '13px', color: 'var(--camp-text-dim)', marginTop: '16px', lineHeight: 1.8 }}>
+          ※ プロンプトはそのままでも使えますが、自由にカスタマイズしていただいても構いません。<br />
+          ※ これはチーム振り返り用です。提出は不要です。
+        </div>
+
+        <div className="slide-theme-box" style={{ marginTop: '24px' }}>
+          <div className="slide-card-title">応用編：他のツールも活用できます</div>
+          <div style={{ fontSize: '14px', color: 'var(--camp-text-dim)', marginBottom: '12px', lineHeight: 1.7 }}>
+            v0以外にも、以下のツールで同じプロンプトを使えます。
+          </div>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" className="vibe-app-btn" style={{ margin: 0, fontSize: '13px', padding: '10px 20px' }}>
+              <span className="vibe-app-btn-text">Claude</span>
+              <span className="vibe-app-btn-arrow">→</span>
+            </a>
+            <a href="https://www.createanything.com/" target="_blank" rel="noopener noreferrer" className="vibe-app-btn" style={{ margin: 0, fontSize: '13px', padding: '10px 20px' }}>
+              <span className="vibe-app-btn-text">Anything</span>
+              <span className="vibe-app-btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="camp-callout" style={{ marginTop: '20px' }}>
+          <div className="camp-callout-title">明日（Day 2）の流れ</div>
+          <div className="camp-callout-body">
+            午前中に<em>漁港を訪問</em>して現場の気づきを収集。<br />
+            そこから<em>仮の課題とターゲット</em>を定め、<br />
+            午後はVibeコーディングで<em>アプリ制作</em>に取り組みます。<br />
+            今日の議論がそのまま明日のプロダクトの土台になります。
+          </div>
+        </div>
+      </FadeSection>
+
       {/* ===== DAY1 COMPLETION ===== */}
       <FadeSection className="camp-section" style={{ textAlign: 'center' }}>
         <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
         <div className="camp-action-title" style={{ fontSize: '26px', marginBottom: '16px' }}>Day 1 おつかれさまでした！</div>
         <div style={{ fontSize: '17px', color: 'var(--camp-text)', lineHeight: 1.9, marginBottom: '28px' }}>
-          今日の観光で感じたことを忘れないうちに記録しておきましょう。
-          明日のVibeコーディングで、この記録が活きてきます。
+          今日の体験と議論を形にできましたか？<br />
+          明日は漁港訪問からアプリ制作へ。今日の気づきが活きてきます。
         </div>
         <CompletionButton label="Day 1 できた！" dayKey="day1-complete" />
       </FadeSection>

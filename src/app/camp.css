@@ -2257,25 +2257,32 @@
    ============================================= */
 
 .top-members {
-  padding: 80px 32px;
-  background: linear-gradient(180deg, var(--camp-bg) 0%, rgba(91, 181, 213, 0.03) 100%);
-  border-top: 1px solid var(--camp-border);
+  padding: 80px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .top-members-inner {
-  max-width: 900px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 48px;
+  background: var(--camp-card);
+  border: 1px solid var(--camp-border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 48px 48px;
+  transition: border-color 0.25s;
+}
+
+.top-members-inner:hover {
+  border-color: var(--camp-gold-dim);
 }
 
 .top-members-content { flex: 1; }
 
 .top-members-title {
   font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--camp-cream);
   margin-bottom: 12px;
@@ -2292,40 +2299,40 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 28px;
+  padding: 12px 28px;
   background: transparent;
-  border: 1px solid var(--camp-gold);
-  color: var(--camp-gold);
-  font-size: 14px;
+  border: 1px solid var(--camp-border);
+  color: var(--camp-cream);
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 1px;
   text-decoration: none;
   transition: all 0.25s ease;
 }
 
 .top-members-btn:hover {
-  background: var(--camp-gold);
-  color: var(--camp-bg);
+  border-color: var(--camp-gold);
+  color: var(--camp-gold);
 }
 
 .top-members-visual { flex-shrink: 0; }
 
 .top-members-avatars {
   display: flex;
-  gap: -12px;
 }
 
 .top-members-avatar {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(91, 181, 213, 0.15), rgba(200, 164, 78, 0.1));
+  background: var(--camp-card);
   border: 2px solid var(--camp-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   margin-left: -12px;
-  transition: transform 0.2s;
+  transition: margin 0.3s ease;
 }
 
 .top-members-avatar:first-child { margin-left: 0; }
@@ -2346,8 +2353,9 @@
     flex-direction: column;
     text-align: center;
     gap: 32px;
+    padding: 32px 24px;
   }
-  .top-members-title { font-size: 26px; }
+  .top-members-title { font-size: 24px; }
 }
 
 /* =============================================
@@ -2720,6 +2728,70 @@
 }
 
 /* =============================================
+   CAR SHARE — 移動中の共有セッション
+   ============================================= */
+
+.camp-car-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 0;
+  margin: 8px 0;
+  color: var(--camp-text-dim);
+}
+
+.camp-car-share::before,
+.camp-car-share::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--camp-border), transparent);
+}
+
+.camp-car-share-icon {
+  font-size: 16px;
+}
+
+.camp-car-share-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* =============================================
+   LUNCH LECTURE — Badge & Section
+   ============================================= */
+
+.lunch-section {
+  position: relative;
+  border: 1px solid rgba(255, 183, 77, 0.15);
+  background: linear-gradient(180deg, rgba(255, 183, 77, 0.04) 0%, transparent 40%);
+}
+
+.lunch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(255, 183, 77, 0.12);
+  border: 1px solid rgba(255, 183, 77, 0.3);
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.lunch-badge-icon {
+  font-size: 16px;
+}
+
+.lunch-badge-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFB74D;
+  letter-spacing: 1px;
+}
+
+/* =============================================
    VIBE APP CTA SECTION
    ============================================= */
 
@@ -2728,12 +2800,10 @@
   justify-content: center;
   align-items: center;
   padding: 48px 24px;
-  background: linear-gradient(180deg, var(--camp-bg) 0%, rgba(102, 126, 234, 0.05) 100%);
-  border-bottom: 1px solid var(--camp-border);
 }
 
 /* =============================================
-   VIBE APP BUTTON — Premium CTA
+   VIBE APP BUTTON — Liquid Glass Pill
    ============================================= */
 
 .vibe-app-btn {
@@ -2741,118 +2811,122 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 18px 36px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 200% 200%;
+  padding: 14px 32px;
+  background: rgba(91, 181, 213, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 16px;
-  box-shadow:
-    0 4px 15px rgba(102, 126, 234, 0.4),
-    0 8px 30px rgba(118, 75, 162, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  animation: gradient-shift 3s ease infinite;
+  border-radius: 100px;
+  border: 1px solid rgba(91, 181, 213, 0.5);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   margin: 24px 0;
 }
 
+/* Shine sweep */
 .vibe-app-btn::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
-  border-radius: 16px;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.vibe-app-btn:hover::before {
+  left: 100%;
 }
 
 .vibe-app-btn:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-3px);
+  background: rgba(91, 181, 213, 0.25);
+  border-color: rgba(91, 181, 213, 0.7);
   box-shadow:
-    0 8px 25px rgba(102, 126, 234, 0.5),
-    0 16px 40px rgba(118, 75, 162, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 12px 32px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(91, 181, 213, 0.2);
 }
 
 .vibe-app-btn:active {
-  transform: translateY(-1px) scale(1.01);
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  transform: translateY(-1px);
 }
 
 .vibe-app-btn-icon {
-  font-size: 20px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  font-size: 18px;
 }
 
 .vibe-app-btn-text {
   position: relative;
   z-index: 1;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 2px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
 .vibe-app-btn-arrow {
-  font-size: 18px;
-  transition: transform 0.3s ease;
+  font-size: 16px;
+  transition: transform 0.35s ease;
+  opacity: 0.8;
 }
 
 .vibe-app-btn:hover .vibe-app-btn-arrow {
-  transform: translateX(4px);
+  transform: translateX(5px);
+  opacity: 1;
 }
 
-/* Hero version - bigger & more impactful */
+/* Hero version — larger pill */
 .hero-vibe-btn {
-  margin-top: 32px;
-  padding: 20px 44px;
-  font-size: 18px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 30%, #667eea 60%, #764ba2 100%);
-  background-size: 300% 300%;
-  box-shadow:
-    0 6px 20px rgba(0, 210, 255, 0.4),
-    0 12px 40px rgba(102, 126, 234, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  margin-top: 0;
+  padding: 16px 44px;
+  font-size: 17px;
+  letter-spacing: 1px;
 }
 
-.hero-vibe-btn:hover {
-  box-shadow:
-    0 10px 30px rgba(0, 210, 255, 0.5),
-    0 20px 50px rgba(102, 126, 234, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
+/* Outer glow */
 .vibe-app-btn-glow {
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #00d2ff, #3a7bd5, #667eea, #764ba2, #f093fb);
-  background-size: 400% 400%;
-  border-radius: 22px;
+  inset: -4px;
+  border-radius: 100px;
+  background: linear-gradient(
+    135deg,
+    rgba(91, 181, 213, 0.35),
+    rgba(200, 164, 78, 0.25),
+    rgba(91, 181, 213, 0.35)
+  );
+  background-size: 200% 200%;
   z-index: -1;
-  filter: blur(12px);
-  opacity: 0.6;
-  animation: glow-rotate 4s linear infinite;
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: glow-pulse 4s ease-in-out infinite;
 }
 
-@keyframes glow-rotate {
-  0% { background-position: 0% 50%; }
+.hero-vibe-btn:hover .vibe-app-btn-glow {
+  opacity: 0.5;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
-/* Mobile adjustments */
+/* Mobile */
 @media (max-width: 768px) {
   .vibe-app-btn {
-    padding: 16px 28px;
-    font-size: 15px;
+    padding: 13px 28px;
+    font-size: 14px;
     gap: 10px;
   }
   .hero-vibe-btn {
-    padding: 18px 32px;
-    font-size: 16px;
+    padding: 15px 36px;
+    font-size: 15px;
   }
 }
