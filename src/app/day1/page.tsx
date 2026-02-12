@@ -105,7 +105,8 @@ export default function Day1Page() {
           <div className="camp-action-desc">
             車内で1人ずつ自己紹介します。<br />
             LP作成済みの方は画面を見せながら。まだの方は口頭でOK。<br />
-            <em>録音しておくと後でLP素材になります。</em>
+            <em>録音しておくと後でLP素材になります。</em><br />
+            ※ 別の車のメンバーとも<em>Discordボイスチャット</em>をつないで一緒に共有しましょう。
           </div>
 
           <div style={{ marginTop: '20px' }}>
@@ -304,7 +305,7 @@ export default function Day1Page() {
 
         <div className="camp-car-share">
           <span className="camp-car-share-icon">🚗</span>
-          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム（ボイチャも活用🎧）</span>
         </div>
 
         <div className="camp-dest d2">
@@ -315,7 +316,7 @@ export default function Day1Page() {
 
         <div className="camp-car-share">
           <span className="camp-car-share-icon">🚗</span>
-          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム</span>
+          <span className="camp-car-share-text">移動中：車内で気づきの共有タイム（ボイチャも活用🎧）</span>
         </div>
 
         <div className="camp-dest d3">

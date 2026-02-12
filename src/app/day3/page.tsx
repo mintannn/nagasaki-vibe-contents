@@ -280,28 +280,6 @@ export default function Day3Page() {
         </div>
       </FadeSection>
 
-      {/* ===== 3-3: PHOTO ===== */}
-      <div className="d3-photo">
-        <div className="d3-sparkle" style={{ top: '12%', left: '8%', animationDelay: '0s' }} />
-        <div className="d3-sparkle" style={{ top: '22%', left: '88%', animationDelay: '1.1s' }} />
-        <div className="d3-sparkle" style={{ top: '65%', left: '15%', animationDelay: '2.3s' }} />
-        <div className="d3-sparkle" style={{ top: '35%', left: '78%', animationDelay: '0.7s' }} />
-        <div className="d3-sparkle" style={{ top: '75%', left: '55%', animationDelay: '1.8s' }} />
-        <div className="d3-sparkle" style={{ top: '18%', left: '42%', animationDelay: '3.1s' }} />
-        <div className="d3-sparkle" style={{ top: '82%', left: '28%', animationDelay: '2.5s' }} />
-        <div className="d3-sparkle" style={{ top: '48%', left: '92%', animationDelay: '0.3s' }} />
-        <div className="d3-sparkle" style={{ top: '55%', left: '5%', animationDelay: '1.5s' }} />
-        <div className="d3-sparkle" style={{ top: '8%', left: '65%', animationDelay: '3.6s' }} />
-        <div className="d3-photo-content">
-          <div className="d3-photo-icon" style={{ animation: 'd3-float 4s ease-in-out infinite' }}>📸</div>
-          <div className="d3-photo-title">記念撮影</div>
-          <div className="d3-photo-sub">
-            3日間を一緒に過ごした仲間と。<br />
-            最高の一枚を残しましょう。
-          </div>
-        </div>
-      </div>
-
       {/* ===== LP HOMEWORK SECTION ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">NEXT STEP</div>
@@ -404,6 +382,28 @@ export default function Day3Page() {
             ・作ったプロダクトのブラッシュアップ、新しいアイデアの実験<br />
             ・次の課題、次の地域、次のチャレンジへ<br /><br />
             <em>この3日間で生まれたつながりと学びを、新しい課題解決につなげていきましょう。</em>
+          </div>
+        </div>
+
+        {/* 記念撮影 */}
+        <div className="d3-photo" style={{ marginTop: '48px' }}>
+          <div className="d3-sparkle" style={{ top: '12%', left: '8%', animationDelay: '0s' }} />
+          <div className="d3-sparkle" style={{ top: '22%', left: '88%', animationDelay: '1.1s' }} />
+          <div className="d3-sparkle" style={{ top: '65%', left: '15%', animationDelay: '2.3s' }} />
+          <div className="d3-sparkle" style={{ top: '35%', left: '78%', animationDelay: '0.7s' }} />
+          <div className="d3-sparkle" style={{ top: '75%', left: '55%', animationDelay: '1.8s' }} />
+          <div className="d3-sparkle" style={{ top: '18%', left: '42%', animationDelay: '3.1s' }} />
+          <div className="d3-sparkle" style={{ top: '82%', left: '28%', animationDelay: '2.5s' }} />
+          <div className="d3-sparkle" style={{ top: '48%', left: '92%', animationDelay: '0.3s' }} />
+          <div className="d3-sparkle" style={{ top: '55%', left: '5%', animationDelay: '1.5s' }} />
+          <div className="d3-sparkle" style={{ top: '8%', left: '65%', animationDelay: '3.6s' }} />
+          <div className="d3-photo-content">
+            <div className="d3-photo-icon" style={{ animation: 'd3-float 4s ease-in-out infinite' }}>📸</div>
+            <div className="d3-photo-title">記念撮影</div>
+            <div className="d3-photo-sub">
+              3日間を一緒に過ごした仲間と。<br />
+              最高の一枚を残しましょう。
+            </div>
           </div>
         </div>
 

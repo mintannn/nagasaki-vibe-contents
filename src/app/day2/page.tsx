@@ -5,6 +5,7 @@ import { FadeSection } from '@/components/fade-section'
 import { CopyButton } from '@/components/copy-button'
 import { Accordion } from '@/components/accordion'
 import { TaskCheckbox } from '@/components/task-checkbox'
+import { CompletionButton } from '@/components/completion-button'
 
 // Helper component for copyable prompt boxes
 function CopyablePrompt({ label, labelClass, text, boxClass }: { label: string; labelClass?: string; text: string; boxClass?: string }) {
@@ -79,6 +80,17 @@ export default function Day2Page() {
               <span style={{ fontSize: '18px' }}>📝</span> テキストメモ<br /><br />
               気づいたことは、どんな小さなことでも記録しておくと<br />
               午後のプロンプトの種になります。
+            </div>
+          </div>
+
+          <div className="slide-card gold">
+            <div className="slide-card-label">COMMUNICATION</div>
+            <div className="slide-card-title">移動中の意見交換はボイチャで</div>
+            <div className="slide-card-body">
+              フィールドワーク中の移動時間も大切な議論タイムです。<br />
+              チーム間の意見交換は<em>Discordのボイスチャット</em>を活用してください。<br /><br />
+              歩きながら感じたことをリアルタイムで共有すると、<br />
+              チームの課題意識がどんどん揃っていきます。
             </div>
           </div>
         </div>
@@ -800,57 +812,6 @@ APIキーを設定できるようにしてください。`}
         </div>
       </FadeSection>
 
-      {/* ===== TIMELINE ===== */}
-      <FadeSection className="slide slide-flow">
-        <div className="slide-tag">TIMELINE</div>
-        <div className="slide-title">タイムライン</div>
-        <div className="slide-subtitle">13:00 — 18:20 のスケジュールです。</div>
-
-        <div className="slide-tl-grid">
-          <div className="slide-tl-card active">
-            <div className="slide-tl-time">13:00 – 14:00</div>
-            <div className="slide-tl-title">レク2 前半</div>
-            <div className="slide-tl-desc">チーム議論＋フレームワーク記入</div>
-          </div>
-          <div className="slide-tl-card active">
-            <div className="slide-tl-time">14:00 – 15:00</div>
-            <div className="slide-tl-title">レク2 後半</div>
-            <div className="slide-tl-desc">ミッション設定＋プロダクト設計</div>
-          </div>
-          <div className="slide-tl-card">
-            <div className="slide-tl-time">15:00 – 18:20</div>
-            <div className="slide-tl-title">自由開発</div>
-            <div className="slide-tl-desc">Vibeコーディング実践（外出・取材も自由）</div>
-          </div>
-        </div>
-
-        <div className="slide-timeline" style={{ marginTop: '32px' }}>
-          <div className="slide-progress-bar">
-            <div className="slide-progress-seg done" />
-            <div className="slide-progress-seg done" />
-            <div className="slide-progress-seg done" />
-            <div className="slide-progress-seg current" />
-            <div className="slide-progress-seg" />
-            <div className="slide-progress-seg" />
-          </div>
-          <div className="slide-progress-labels">
-            <span>DAY1 観光</span>
-            <span>FW</span>
-            <span>レク1</span>
-            <span className="text-coral">レク2 ←今</span>
-            <span>BBQ</span>
-            <span>DAY3 発表</span>
-          </div>
-        </div>
-
-        <div className="slide-appendix-links">
-          <span>付録：</span>
-          <a href="#appendix-db-api">DB・API連携ガイド</a>
-          <a href="#appendix-ai-mentoring">AIとの壁打ちの進め方</a>
-          <a href="#appendix-column">コラム：AIと人のバランス</a>
-        </div>
-      </FadeSection>
-
       {/* ===== APPENDIX SECTION (Accordion) ===== */}
       <FadeSection className="slide slide-flow">
         <div className="slide-tag">APPENDIX</div>
@@ -1073,6 +1034,17 @@ APIキーは環境変数 OPENAI_API_KEY から読み込んでください。`}
             明日のDAY3に向けて、自分のペースで過ごしてください。
           </div>
         </div>
+      </FadeSection>
+
+      {/* ===== DAY2 COMPLETION ===== */}
+      <FadeSection className="slide slide-flow" style={{ textAlign: 'center', minHeight: 'auto' }}>
+        <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
+        <div className="slide-title" style={{ fontSize: 'clamp(26px, 5vw, 36px)' }}>Day 2 おつかれさまでした！</div>
+        <div className="slide-subtitle" style={{ marginBottom: '28px' }}>
+          フィールドワークからチーム開発、BBQまで盛りだくさんの1日でした。<br />
+          明日はいよいよ最終日。成果発表に向けて仕上げていきましょう。
+        </div>
+        <CompletionButton label="Day 2 できた！" dayKey="day2-complete" />
       </FadeSection>
 
       {/* ===== FOOTER ===== */}

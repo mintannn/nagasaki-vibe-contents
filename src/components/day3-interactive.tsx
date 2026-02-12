@@ -90,15 +90,14 @@ export function ConfettiCanvas() {
       setTimeout(() => fire(60), 500)
     };
     (window as unknown as Record<string, unknown>).__fireFinale = () => {
-      const cx = window.innerWidth / 2
-      const cy = window.innerHeight
-      fire(200, cx + (Math.random() - 0.5) * 400, cy)
-      setTimeout(() => {
-        for (let i = 0; i < 150; i++) particlesRef.current.push(createParticle(cx + (Math.random() - 0.5) * 600, cy))
-        animate()
-      }, 300)
-      setTimeout(() => { fire(120) }, 700)
-      playFanfare()
+      fire(200)
+      setTimeout(() => fire(150), 250)
+      setTimeout(() => fire(100), 500)
+      setTimeout(() => fire(80), 800)
+      try {
+        const audio = new Audio('/tousen.mp3')
+        audio.play()
+      } catch { /* noop */ }
     }
     return () => {
       delete (window as unknown as Record<string, unknown>).__fireConfetti
