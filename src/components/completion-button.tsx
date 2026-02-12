@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom'
 interface CompletionButtonProps {
   label?: string
   dayKey?: string
+  imageSrc?: string
 }
 
 const COLORS = ['#C8A44E', '#D4553E', '#2D9B8E', '#F0EBE0', '#FFD700', '#FF6B6B', '#4ECDC4', '#FFE66D', '#A78BFA', '#FB923C']
@@ -66,12 +67,13 @@ function createFishParticle(ox: number, oy: number): FishParticle {
   }
 }
 
-export function CompletionButton({ label = 'できた！', dayKey = 'day-complete' }: CompletionButtonProps) {
+export function CompletionButton({ label = 'できた！', dayKey = 'day-complete', imageSrc }: CompletionButtonProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const animRef = useRef<number | null>(null)
-  const btnRef = useRef<HTMLButtonElement>(null)
+  const triggerRef = useRef<HTMLElement>(null)
   const [mounted, setMounted] = useState(false)
+  const [pressed, setPressed] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -162,13 +164,15 @@ export function CompletionButton({ label = 'できた！', dayKey = 'day-complet
       startAnim()
     }, 500)
 
-    const btn = btnRef.current
-    if (btn) {
-      const rect = btn.getBoundingClientRect()
+    const el = triggerRef.current
+    if (el) {
+      const rect = el.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top
       for (let i = 0; i < 30; i++) particlesRef.current.push(createFishParticle(cx, cy))
     }
+
+    setPressed(true)
 
     try {
       const audio = new Audio('/tousen.mp3')
@@ -180,22 +184,46 @@ export function CompletionButton({ label = 'できた！', dayKey = 'day-complet
     } catch { /* noop */ }
   }, [dayKey, startAnim])
 
+  const canvas = mounted && createPortal(
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 9999,
+      }}
+    />,
+    document.body
+  )
+
+  if (imageSrc) {
+    return (
+      <>
+        {canvas}
+        <div
+          ref={triggerRef as React.RefObject<HTMLDivElement>}
+          className={`completion-cert${pressed ? ' completion-cert--active' : ''}`}
+          onClick={handleClick}
+        >
+          <div className="completion-cert-glow" />
+          <img
+            src={imageSrc}
+            alt="修了証"
+            className="completion-cert-img"
+          />
+          <div className="completion-cert-tap">タップしてみてね</div>
+          <div className="completion-cert-label">おつかれさまでした！</div>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
-      {mounted && createPortal(
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            pointerEvents: 'none',
-            zIndex: 9999,
-          }}
-        />,
-        document.body
-      )}
-      <button ref={btnRef} className="completion-button" onClick={handleClick}>
+      {canvas}
+      <button ref={triggerRef as React.RefObject<HTMLButtonElement>} className="completion-button" onClick={handleClick}>
         🐟 {label}
       </button>
     </>

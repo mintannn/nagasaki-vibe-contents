@@ -1038,13 +1038,7 @@ APIキーは環境変数 OPENAI_API_KEY から読み込んでください。`}
 
       {/* ===== DAY2 COMPLETION ===== */}
       <FadeSection className="slide slide-flow" style={{ textAlign: 'center', minHeight: 'auto' }}>
-        <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
-        <div className="slide-title" style={{ fontSize: 'clamp(26px, 5vw, 36px)' }}>Day 2 おつかれさまでした！</div>
-        <div className="slide-subtitle" style={{ marginBottom: '28px' }}>
-          フィールドワークからチーム開発、BBQまで盛りだくさんの1日でした。<br />
-          明日はいよいよ最終日。成果発表に向けて仕上げていきましょう。
-        </div>
-        <CompletionButton label="Day 2 できた！" dayKey="day2-complete" />
+        <CompletionButton dayKey="day2-complete" imageSrc="/DAY2.png" />
       </FadeSection>
 
       {/* ===== FOOTER ===== */}

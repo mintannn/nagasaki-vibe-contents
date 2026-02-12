@@ -492,13 +492,7 @@ export default function Day1Page() {
 
       {/* ===== DAY1 COMPLETION ===== */}
       <FadeSection className="camp-section" style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎉</div>
-        <div className="camp-action-title" style={{ fontSize: '26px', marginBottom: '16px' }}>Day 1 おつかれさまでした！</div>
-        <div style={{ fontSize: '17px', color: 'var(--camp-text)', lineHeight: 1.9, marginBottom: '28px' }}>
-          今日の体験と議論を形にできましたか？<br />
-          明日は漁港訪問からアプリ制作へ。今日の気づきが活きてきます。
-        </div>
-        <CompletionButton label="Day 1 できた！" dayKey="day1-complete" />
+        <CompletionButton dayKey="day1-complete" imageSrc="/DAY1.png" />
       </FadeSection>
 
       {/* ===== FOOTER ===== */}

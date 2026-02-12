@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { DayNav } from '@/components/day-nav'
 import { FadeSection } from '@/components/fade-section'
-import { ConfettiCanvas, ConfettiButton, FinaleButton, TeamCard } from '@/components/day3-interactive'
+import { ConfettiCanvas, ConfettiButton, TeamCard } from '@/components/day3-interactive'
+import { CompletionButton } from '@/components/completion-button'
 import { CopyButton } from '@/components/copy-button'
 import { TaskCheckbox } from '@/components/task-checkbox'
 import { Accordion } from '@/components/accordion'
@@ -407,7 +408,7 @@ export default function Day3Page() {
           </div>
         </div>
 
-        <FinaleButton />
+        <CompletionButton dayKey="day3-complete" imageSrc="/DAY3.png" />
       </FadeSection>
 
       {/* ===== FOOTER ===== */}
