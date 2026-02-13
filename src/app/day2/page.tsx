@@ -182,7 +182,7 @@ export default function Day2Page() {
             <div className="slide-feature">
               <div className="slide-feature-icon">💬</div>
               <div>
-                <div className="slide-feature-title">AIチャット（API連携）</div>
+                <div className="slide-feature-title">AIチャット（API連携）<span style={{ fontSize: '10px', color: 'var(--camp-coral)', marginLeft: '4px' }}>オプション</span></div>
                 <div className="slide-feature-desc">「この魚について教えて」とAIに質問できるチャット機能</div>
               </div>
             </div>
@@ -245,10 +245,10 @@ export default function Day2Page() {
           <div className="slide-step-row-info">
             <div className="slide-step-num">03</div>
             <div>
-              <div className="slide-step-title">AIチャット機能を組み込む（API連携）</div>
+              <div className="slide-step-title">AIチャット機能を組み込む（API連携）<span style={{ fontSize: '12px', color: 'var(--camp-coral)', marginLeft: '8px', fontWeight: 500 }}>※ オプション</span></div>
               <div className="slide-step-desc">
-                APIキーを使って、魚について質問できるチャット機能を追加。<br />
-                外部AIと連携するアプリの基本構造を体験します。
+                応用編として挑戦したい方向け。うまくいかない場合もあるので、<br />
+                余裕がある方だけ試してみてください。
               </div>
             </div>
           </div>
@@ -322,7 +322,7 @@ APIキーはこちらで提供するので、そちらを活用してくださ�
           <div>
             <TaskCheckbox id="day2-v0-login" label="v0にログインし、プロンプトを入力できた" />
             <TaskCheckbox id="day2-v0-ui" label="AIが生成したUIを確認し、修正の指示を出せた" />
-            <TaskCheckbox id="day2-v0-api" label="API連携（チャット機能）の仕組みを理解できた" />
+            <TaskCheckbox id="day2-v0-api" label="（オプション）API連携（チャット機能）を試せた" />
 
             <div className="slide-callout" style={{ marginTop: '32px' }}>
               <div className="slide-callout-icon">🎯</div>
