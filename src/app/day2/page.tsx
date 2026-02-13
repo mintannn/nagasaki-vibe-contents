@@ -296,6 +296,20 @@ APIキーはこちらで提供するので、そちらを活用してくださ�
             />
           </div>
         </Accordion>
+
+        <Accordion title="🎯 AI壁打ちで解像度を上げる" id="appendix-ai-resolution">
+          <div style={{ width: '100%', marginTop: '8px' }}>
+            <img
+              src="/mvp.webp"
+              alt="AI壁打ちで解像度を上げる"
+              style={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: '8px',
+              }}
+            />
+          </div>
+        </Accordion>
       </FadeSection>
 
       {/* ===== SLIDE 4: GOAL & NEXT ===== */}
