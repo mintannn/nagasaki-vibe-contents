@@ -279,6 +279,25 @@ APIキーを設定できるようにしてください。`}
         </div>
       </FadeSection>
 
+      {/* ===== APPENDIX: AIとの壁打ち方法 ===== */}
+      <FadeSection className="slide slide-compact">
+        <Accordion title="📖 参考：AIとの壁打ち方法" id="appendix-ai-kabeuchi">
+          <div style={{ width: '100%', marginTop: '8px' }}>
+            <iframe
+              src="/uni.pdf#navpanes=0&scrollbar=0"
+              width="100%"
+              height="600"
+              style={{
+                border: 'none',
+                borderRadius: '8px',
+                background: 'white',
+              }}
+              title="AIとの壁打ち方法"
+            />
+          </div>
+        </Accordion>
+      </FadeSection>
+
       {/* ===== SLIDE 4: GOAL & NEXT ===== */}
       <FadeSection className="slide">
         <div className="slide-tag">DEFINITION OF DONE</div>
