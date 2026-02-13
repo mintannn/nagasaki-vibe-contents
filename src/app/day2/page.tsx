@@ -255,8 +255,8 @@ export default function Day2Page() {
           <CopyablePrompt
             label="PROMPT EXAMPLE"
             text={`詳細画面の下部に「この魚についてAIに聞く」チャット機能を追加してください。
-ユーザーが自由に質問を入力すると、AIが回答を返すようにしてください。
-APIキーを設定できるようにしてください。`}
+ユーザーが自由に質問を入力すると、OpenAIのAPIを活用してAIが回答を返すようにしてください。
+APIキーはこちらで提供するので、そちらを活用してください。`}
           />
         </div>
       </FadeSection>
