@@ -212,33 +212,35 @@ export default function Day3Page() {
         <div className="d3-agenda-steps">
           <div className="d3-ag-step s-teal">
             <div className="d3-ag-num">01</div>
-            <div className="d3-ag-label">SHARE</div>
-            <div className="d3-ag-title">チームごとの共有</div>
-            <div className="d3-ag-body">
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>❶ 課題と解決策を一言で</span></div>
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>❷ プロダクトをURL/デモで紹介</span></div>
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>各チーム後に<em>質疑応答</em></span></div>
-            </div>
-          </div>
-          <div className="d3-ag-step s-coral">
-            <div className="d3-ag-num">02</div>
             <div className="d3-ag-label">DISCUSS</div>
             <div className="d3-ag-title">チーム議論</div>
             <div className="d3-ag-body">
               <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span><em>個人の学び・気づき</em>を共有</span></div>
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>社会課題と価値の再発見</span></div>
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>Vibeコーディングの気づき</span></div>
-              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>今後の取り組みと意見交換</span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>この3日間の振り返り</span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>印象に残ったこと</span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>今後の取り組みの意見交換</span></div>
+            </div>
+          </div>
+          <div className="d3-ag-step s-coral">
+            <div className="d3-ag-num">02</div>
+            <div className="d3-ag-label">TEAM SHARE</div>
+            <div className="d3-ag-title">チームで全体共有</div>
+            <div className="d3-ag-body">
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>チームで考えた<em>ペルソナ</em></span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>取り組んだ<em>課題</em></span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span><em>届けたい価値</em></span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>チーム代表者が発表</span></div>
             </div>
           </div>
           <div className="d3-ag-step s-gold">
             <div className="d3-ag-num">03</div>
-            <div className="d3-ag-label">WRAP UP</div>
-            <div className="d3-ag-title">全体で発表</div>
+            <div className="d3-ag-label">INDIVIDUAL</div>
+            <div className="d3-ag-title">個人で発表</div>
             <div className="d3-ag-body">
-              一人ひとり、<em>一言ずつ</em>。<br /><br />
-              この3日間で得たもの、<br />
-              感じたことを全体で共有しましょう。
+              一人ずつ、全体の前で発表。<br /><br />
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>この3日間で<em>得たもの</em></span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span><em>感じたこと</em></span></div>
+              <div className="d3-ag-item"><span className="d3-ag-bullet">▸</span><span>自分が試しで<em>作ってみたもの</em>の紹介</span></div>
             </div>
           </div>
         </div>
